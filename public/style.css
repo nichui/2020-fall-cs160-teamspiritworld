@@ -1,0 +1,49 @@
+.Logo {
+
+	color: "0E69D3";
+}
+.btn-aboutus{
+    color: #fff;
+    background-color: #33b5e5 !important
+}
+
+.btn-aboutus:hover {
+    color: #fff;
+    background-color: #4abde8
+}
+
+.btn-aboutus:focus,
+.btn-aboutus.focus {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15)
+}
+
+.btn-aboutus:focus,
+.btn-aboutus:active,
+.btn-aboutus.active {
+    background-color: #14799e
+}
+
+.btn-aboutus.dropdown-toggle {
+    background-color: #33b5e5 !important
+}
+
+.btn-aboutus.dropdown-toggle:hover,
+.btn-aboutus.dropdown-toggle:focus {
+    background-color: #4abde8 !important
+}
+
+.btn-aboutus:not([disabled]):not(.disabled):active,
+.btn-aboutus:not([disabled]):not(.disabled).active,
+.show>.btn-aboutus.dropdown-toggle {
+    background-color: #14799e !important;
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15)
+}
+
+.btn-aboutus:not([disabled]):not(.disabled):active:focus,
+.btn-aboutus:not([disabled]):not(.disabled).active:focus,
+.show>.btn-aboutus.dropdown-toggle:focus {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15)
+}
