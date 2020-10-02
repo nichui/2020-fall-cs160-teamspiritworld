@@ -36,7 +36,13 @@ const Register = () => {
     			</small>
 
    				<hr/>
-    			<button class="btn btn-info my-4 btn-block" type="submit">Submit</button>
+                
+                <div>
+                    <a class="nav-link" href="/Signin">
+                        <button type="button" class="btn btn-info my-4 btn-block">Submit</button>
+                    </a>         
+
+                </div>
 
     
  
