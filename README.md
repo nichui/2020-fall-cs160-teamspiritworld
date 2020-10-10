@@ -31,6 +31,9 @@ Some brainstorm ideas for function/resources to be implemented:
     music rooms
     Judo room in Yoshihiro Hall (provide a direction/location) 
 
+
+NPM RUN SERVER OUTPUT EXAMPLE
+
 _chi@Sarahs-MacBook-Pro 2020-fall-cs160-teamspiritworld % npm run dev 
 
 > spiritworld@1.0.0 dev /Users/sarah_chi/Documents/CS 160/SpiritWorld/2020-fall-cs160-teamspiritworld
