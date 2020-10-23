@@ -8,11 +8,10 @@ const LoginLinks = () => {
 
 	return(
 		<div>
-		<a class="nav-link">
-         <Link to="/Signin" ><button type="button" class="btn btn-info btn-primary  btn-sm my-0 ">Login</button>
-		 </Link>          
+		<a class="nav-link" href="/Signin">
+            <button type="button" class="btn btn-info btn-primary  btn-sm my-0 ">Login</button>
+        </a>         
 
-        </a>
         </div>
 
 
