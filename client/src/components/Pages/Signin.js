@@ -71,14 +71,25 @@ class Signin extends Component {
         
 
   
-    	<button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+        <div>
+		<a class="nav-link" href="/Welcome">
+            <button type="button" class="btn btn-info btn-block my-4 ">Sign in</button>
+        </a>         
+
+        </div>
 
     
     	<p>Not a member? Please register below.
        
     	</p>
 
-    	<button class="btn btn-info btn-block my-4" type="submit">Register</button>
+        <div>
+            <a class="nav-link" href="/Register">
+                <button type="button" class="btn btn-info btn-block my-4 ">Register</button>
+            </a>         
+
+        </div>
+
    
 
 		</form>
