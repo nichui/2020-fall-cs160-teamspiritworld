@@ -1,15 +1,24 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const config = require('./../config/config').get(process.env.NODE_ENV);
+const config = require('./../config/config').get(process.env.NODE_ENV);;
 const SALT_I = 10;
 
 const userSchema = mongoose.Schema({
-
+    firstname:{
+        type:String,
+        required: true,
+        maxlength:100
+    },
+    lastname:{
+        type:String,
+        require: true,
+        maxlength:100
+    },
     email:{
         type:String,
         required: true,
-        trim: true,
+       // trim: true,
         unique:1
     },
     password:{
@@ -17,20 +26,13 @@ const userSchema = mongoose.Schema({
         required: true,
         minlength:6
     },
-    name:{
-        type:String,
-        maxlength:100
-    },
-    lastname:{
-        type:String,
-        maxlength:100
-    },
+    
     token:{
         type:String
     }
     
 });
-
+/*
 userSchema.pre('save',function(next){
     var user = this;
     if(user.isModified('password')){
@@ -49,7 +51,8 @@ userSchema.pre('save',function(next){
     }
 
 })
-
+*/
+/*
 userSchema.methods.comparePassword = function(candidatePassword,cb){
     var user = this;
     bcrypt.compare(candidatePassword, user.password,function(err,isMatch){
@@ -100,5 +103,6 @@ userSchema.methods.deleteToken = function(token,cb){
 
     })
 }
+*/
 const User = mongoose.model('User',userSchema);
 module.exports = {User}

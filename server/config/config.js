@@ -7,9 +7,11 @@ const config = {
 
     },
     default:{
-        SECRET:'SUPERSECRETPASSWORD123',
-        DATABASE: 'mongodb://localhost:27017/spiritworld',
+ 
 
+      SECRET:'SUPERSECRETPASSWORD123',
+      DATABASE: 'mongodb://localhost:27017/spiritworld',
+  
     }
 }
 
