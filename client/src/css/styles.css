@@ -36,4 +36,9 @@
 	font-size: 50px;
 
 }
+.article_block {
+  border: 1px solid #e2e2e2;
+  margin-bottom: 20px;
+  padding: 10px 10px;
+}
 
