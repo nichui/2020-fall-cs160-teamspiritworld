@@ -14,6 +14,8 @@ import Login from './components/Pages/Signin';
 import Registerpage from './components/Pages/Register';
 import {Provider} from "react-redux";
 import store from "./store/store";
+import Profilepage from './components/Pages/Profile';
+import FavListpage from './components/Pages/FavList';
 
 import PrivateRoute from "./components/private-route/privateRoute";
 import Home from "./components/Pages/Home";
@@ -44,6 +46,8 @@ class App extends Component {
     				<Route path="/" exact component={Landingpage} />            		
 					<Route path="/register" component={Registerpage} />
     				<Route path="/signin" component={Login} />
+					<Route path="/profile" component={Profilepage} />
+					<Route path="/favlist" component={FavListpage} />
 					<Switch>
               				<PrivateRoute exact path="/home" component={Home} />
             		</Switch>
