@@ -5,6 +5,8 @@ import Logo from './Logo.svg';
 import AboutUsLinks from './AboutUsLink';
 import FAQLinks from './FAQLink';
 import LoginLinks from './LoginLink';
+import ProfileLinks from './ProfileLink';
+import FavListLinks from './FavListLink';
 
 
 const Navbar = () => {
@@ -39,6 +41,18 @@ const Navbar = () => {
       							<li class="nav-item">
       				
         							<LoginLinks />
+
+     							</li>
+
+								 <li class="nav-item">
+      				
+        							<ProfileLinks />
+
+     							</li>
+
+								 <li class="nav-item">
+      				
+        							<FavListLinks />
 
      							</li>
      						
