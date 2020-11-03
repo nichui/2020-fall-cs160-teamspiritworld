@@ -7,6 +7,7 @@ import FAQLinks from './FAQLink';
 import LoginLinks from './LoginLink';
 import ProfileLinks from './ProfileLink';
 import FavListLinks from './FavListLink';
+import ContactUsLinks from './ContactUsLink';
 
 
 const Navbar = () => {
