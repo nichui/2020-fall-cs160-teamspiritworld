@@ -2,6 +2,44 @@
   box-sizing: border-box;
 }
 
+.split {
+  height: 80%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 1;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  border: 60px solid white;
+  left: 0;
+  background-color: #cde5fe;
+}
+
+/* Control the right side */
+.right {
+  border: 60px solid white;
+  right: 0;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
