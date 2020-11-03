@@ -7,7 +7,7 @@ import FAQLinks from './FAQLink';
 import LoginLinks from './LoginLink';
 import ProfileLinks from './ProfileLink';
 import FavListLinks from './FavListLink';
-
+import ContactUsLinks from './ContactUsLink';
 
 const Navbar = () => {
 
@@ -53,6 +53,12 @@ const Navbar = () => {
 								 <li class="nav-item">
       				
         							<FavListLinks />
+
+     							</li>
+                                
+                                <li class="nav-item">
+      				
+        							<ContactUsLinks />
 
      							</li>
      						
