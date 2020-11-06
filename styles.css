@@ -1,0 +1,131 @@
+* {
+  box-sizing: border-box;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: white;
+  padding: 10px;
+  grid-gap: 50px;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+
+.log {
+  width: 400px;
+  margin: 5% auto;
+  background-color: #FFF;
+  padding: 30px 0;
+}
+.Logo {
+
+	color: #0E69D3;
+	font-weight: bold;
+
+}
+.btn-primary {
+  font-family: Raleway-SemiBold;
+  font-size: 13px;
+  /*color: rgba(58, 133, 191, 0.75);*/
+  letter-spacing: 1px;
+  line-height: 15px;
+  border: 2px solid rgba(58, 133, 191, 0.75);
+  border-radius: 40px;
+  /*background: transparent;*/
+  transition: all 0.3s ease 0s;
+}
+
+.btn-primary:hover {
+  color: #FFF;
+  /*background: rgba(58, 133, 191, 0.75);*/
+  border: 2px solid rgba(58, 133, 191, 0.75);
+}
+.FormTitle {
+	color: #0E69D3;
+	font-weight: bold;
+	font-size: 50px;
+
+}
+.article_block {
+  border: 1px solid #e2e2e2;
+  margin-bottom: 20px;
+  padding: 10px 10px;
+}
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Oswald:500,600,700|Roboto');
+
+body {
+	margin: 0;
+	background-image: url(https://images.pexels.com/photos/1020317/pexels-photo-1020317.jpeg?cs=srgb&dl=abstract-art-background-1020317.jpg&fm=jpg);
+    background-size: cover;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 60px;
+    margin: 50px 0 0;
+    color: #fff;
+}
+
+.container {
+    max-width: 60%;
+    margin: 0 auto;
+    padding: 70px 0 20px;
+    width: 100%;
+}
+
+.acc h3 {
+    font-size: 25px;
+    background-color: skyblue;
+    color: #fff;
+    padding: 15px;
+    margin: 0;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.acc h3:after {
+    content: '+';
+    position: absolute;
+    right: 20px;
+    font-size: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.acc.active h3:after {
+	content: '-';
+}
+
+.content {
+    background-color: #fff;
+    display: none;
+}
+
+.content-inner {
+    padding: 15px;
+}
+
+.content * {
+    margin-top: 0;
+    line-height: 1.5;
+}
+
+.acc {
+    border-bottom: 1px solid #fff;
+}
