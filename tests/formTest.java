@@ -7,7 +7,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.JavascriptExecutor;
 
-public class Test  {
+public class formTest  {
     public static void main(String[] args) {
         // Create a new instance of the Chrome driver
         WebDriver driver = new ChromeDriver();
