@@ -1,0 +1,22 @@
+Selenium
+
+These test cases test the functionalities of the UI login and sign up text field form response, 
+buttons on the nav bar, scroll function, and constraints for username inputs.
+
+Documentation for Selenium build and setup
+Technical notes (during development of test script) for team members -- from Sarah
+NOTE: Build path to Selenium archive to JAR file by exporting environment variable “CLASSPATH” (can look at env variables with command “printenv” Mac, “set” Windows). I included some Windows and Mac commands since we all use different OS.
+For instance, I created a folder “javaLib” under my Documents directory to hold the contents from unzipping the JAR file.
+First try to compile in Eclipse IDE, but this may result in errors because of build path issues. If it doesn’t build in Eclipse, you can read some notes below to run commands in terminal to set up your development environment and set up Selenium.
+Downloaded JAR file must be unzipped (jar xf selenium-server-standalone-3.9.1.jar) 
+CLASSPATH should point to that directory
+pwd → get current directory path (mac) 
+echo %cd% (windows)
+cp <selenium downloaded file> <new path to store JAR file> (Mac)
+copy <selenium download file> <new path to store JAR file> (windows)
+Example command I used to set env variable:
+export CLASSPATH=/Users/schi/Documents/javaLib/selenium-server-standalone-3.9.1 (Mac)
+set CLASSPATH=/Users/schi/Documents/javaLib/selenium-server-standalone-3.9.1 (windows)
+The path MUST BE the path to the selenium unzipped contents, NOT the jar file itself
+Selenium archive link and version I used: http://selenium-release.storage.googleapis.com/index.html?path=3.9/
+After setting up the development environment, run the example Java program from https://github.com/SeleniumHQ/selenium/wiki/Getting-Started
