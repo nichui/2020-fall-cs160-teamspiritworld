@@ -29,11 +29,7 @@ const Navbar = () => {
     					 <form class="form-inline my-2 my-lg-0">
     						<ul class="navbar-nav mr-auto">
       						
-      							<li class="nav-item ">
-        				
-        							<AboutUsLinks />
-        				
-      							</li>
+      							
       							<li class="nav-item">
       								<FAQLinks />
         				
@@ -44,23 +40,7 @@ const Navbar = () => {
 
      							</li>
 
-								 <li class="nav-item">
-      				
-        							<ProfileLinks />
-
-     							</li>
-
-								 <li class="nav-item">
-      				
-        							<FavListLinks />
-
-     							</li>
-                                
-                                <li class="nav-item">
-      				
-        							<ContactUsLinks />
-
-     							</li>
+								
      						
     					</ul>
     					</form>

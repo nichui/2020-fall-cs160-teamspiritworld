@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../../css/styles.css';
 import Navbar from '../Layout/NavbarLanding';
 import {BrowserRouter} from 'react-router-dom';
+import Navbaruser from "../Layout/NavbarUser";
 
 
 class Profilepage extends Component {
@@ -40,7 +41,9 @@ class Profilepage extends Component {
         return (
             <BrowserRouter>
     			<div className="Landingpage">
-    				<Navbar />
+          <div>
+<Navbaruser />
+</div>
 					<div className="ProfilePage">
                         <h2>Name</h2>
                         <p>John Doe</p> 

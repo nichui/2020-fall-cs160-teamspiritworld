@@ -1,35 +1,33 @@
 const express = require('express');
 const router = express.Router();
+const slugify = require("slugify");
 
 //Resource model
 const {Resource} = require('../models/resource');
-const {auth} = require('../middleware/auth');
-
+const {Category} = require("../models/category");
+const category = require('../models/category');
+var ObjectID = require('mongodb').ObjectID;   
 //@route GET api/resources
 //@desc Get All popular Resources
 //@access Private
+/*
 router.get('/popular',(req,res) => {
-    //localhost:/api/resources/popular?order=asc&rating=5
+    //localhost:/api/resources/popular?rating=5
 
     //let skip = res.query.skip ? parseInt(req.query.skip) : 0;
    // let limit = req.query.limit ? parseInt(req.query.limit) :50;
     //let order = req.query.order ? req.query.order : 'asc';
     let rating = req.query.rating ? {rating: req.query.rating} : {}
    
+    
 
-    Resource.find(rating).then((response)=>{
-        res.status(200).json({response, success:true});
-        //if(err)return res.status(400).send(err);
-        //res.send(doc);
+    Resource.find(rating).exec((err,doc)=>{
+        
+        if(err)return res.status(400).send(err);
+        res.send(doc);
     })
-    .catch((error)=>{
-        res.status(400).json({error,success:false})
-    })
-    /*
-    Resource.find()
-        .sort({rating: 1})
-        .then(resources => res.json(resources));
-        */
+    
+    
 });
 //@route POST api/resources
 //@desc   Create resources
@@ -43,7 +41,8 @@ router.route('/resource').post((req,res) => {
     const newResource = new Resource({
         title: req.body.title,
         content: req.body.content,
-        category: req.body.category,
+        category: req.category._id,
+        image: req.body.image,
         rating: req.body.rating,
         //userId: req.user._id
     });
@@ -131,5 +130,215 @@ router.route('/')
     })
     
 })
+*/
+
+
+router.post("/resource", async (req,res) =>{
+    try{
+        console.log(req.body);
+        req.body.slug = slugify(req.body.title);
+        const newResource = await new Resource(req.body).save()
+        res.json(newResource);
+
+
+    }catch (err){
+        console.log(err);
+        res.status(400).json({
+            err: err.message,
+        })
+    }
+
+})
+router.get('/resource', async (req, res) => {  
+    
+    // localhost/api/books/book?id=ldcksdbcksdcbkjsdc
+    let id = req.query.id;
+
+    Resource
+    .find({_id: id})
+    .populate('category','slug')
+    .populate('image', "image")
+    .exec((err,doc)=>{
+        if(err) return res.status(400).send(err);
+        res.send(...doc)
+    })
+    
+
+//let id = req.query.id;
+
+//let item = await (await Resource.findById(req.params.resourceId)).exec()
+/*
+let resource =  await Resource.findById({_id:id})
+.populate('category', '_id slug')
+.populate('image', "_id image")
+.exec()
+
+res.json(resource)
+*/
+
+
+
+
+})
+router.get('/:count', async (req, res) => {  
+      const {sort,order,limit} = req.body
+
+    let resources = await Resource.find({})
+    .limit(parseInt(req.params.count))
+    .populate('category',"slug")
+    .populate('image','image')
+    .sort([['createdAt','desc']])
+    .exec()
+
+    res.json(resources)
+
+   
+
+
+
+})
+router.delete('/:slug', async(req,res) => {
+    try{
+        const deleted = await Resource.findOneAndRemove({slug: req.params.slug,
+        }).exec();
+        res.json(deleted)
+
+    }
+    catch (err) {
+
+    console.log(err)
+    return res.status(400).send('Resource delete failed')
+    }
+})
+router.get("/resource/:slug", async(req,res) => {
+    const resource = await Resource.findOne({slug: req.params.slug})
+    .populate('category')
+    .exec()
+
+    res.json(resource)
+})
+
+router.put("/resource/:slug", async(req,res) => {
+
+    try{
+        if(req.body.title){
+            req.body.slug = slugify(req.body.title)
+        }
+
+        const updated = await Resource.findOneAndUpdate({slug: req.params.slug}, req.body, 
+            {new: true}
+              ).exec();
+              res.json(updated);
+    }catch (err) {
+
+        console.log('RESOURCE UPDATE ERROR ----->' ,err)
+        return res.status(400).send("Resource update failed")    }
+})
+
+router.put("/resource/star/:resourceId", async (req,res) => {
+    const resource = await (await Resource.findById(req.params.resourceId)).exec()
+    const user = await user.findOne({email: req.user.email}).exec()
+    const {star } = req.body
+    
+    let existingRatingObject =  resource.ratings.find((element) => 
+        element.postedBy === user._id.toString()
+    );
+
+    if(existingRatingObject === undefined){
+        let ratingAdded = await Product.findByIdAndUpdate(resource._id,{
+                $push: {ratings: {star, postedBy: user._id }},
+                 
+        }, {
+            new: true
+        }
+        ).exec()
+    
+    console.log('ratingAdded', ratingAdded);
+    res.json(ratingAdded)
+} else {
+    const ratingUpdated = await Resource.updateOne(
+    {
+        ratings: {$elemMatch: existingRatingObject  },
+    },
+
+ {$set: {"ratings.$.star": star}},
+{new: true}
+).exec();
+console.log('ratingUpdated', ratingUpdated)
+res.json(ratingUpdated)
+}
+});
+
+
+const handleQuery = async(req,res,query) => {
+
+    const resources = await Resource.find({$text: {$search: query}})
+     .populate('category', '_id name')
+     .populate('title')
+     
+     .exec()
+     res.json(resources)
+}
+const handleCategory = async (req, res, category) => {
+    try {
+        let resources = await Resource.find({category})
+        .populate("category", "_id name")
+        .exec()
+
+        res.json(resources )
+
+    }catch(err){
+        console.log(err)
+    }
+}
+const handleStar = (req, res, stars) => {
+    Resource.aggregate([
+        {
+            $project:{
+                document: "$$ROOT",
+               // title: "$title",
+                //description: "$description",
+                //averageRating: 
+                floorAverage: {
+                    $floor: {$avg: "$ratings.star"},
+                },
+            },
+        },
+        {$match: {floorAverage: stars}}
+    ])
+    .limit(12)
+    .exec((err,aggregates) =>{
+        if(err) console.log('AGGREGATE ERROR', err)
+        Resource.find({_id:aggregates})
+        .populate("category", "_id name")
+        .exec((err,resources) => {
+            if(err) console.log('RESOURCE AGGREGATE ERROR', err)
+            res.json(resources)
+        })
+    })
+}
+router.post("/search/filters", async (req, res) =>{
+
+    const {query, category, stars } = req.body
+
+    if(query) {
+        console.log("query ---->", query)
+        await handleQuery(req, res, query)
+         
+    }
+    if(category) {
+        console.log("category ----->", category)
+        await handleCategory(req, res, category)
+
+
+    }
+    if(stars) {
+        await handleStar(req,res,stars)
+    }
+
+
+})
+
+
 module.exports = router;
 
