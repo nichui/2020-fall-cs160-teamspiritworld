@@ -8,13 +8,17 @@ import Logo1 from '../pics/SCE.jpg';
 import Logo2 from '../pics/WellnessCenter.jpg';
 import Logo3 from '../pics/SoundStudio.jpg';
 import Logo4 from '../pics/table.jpg';
+import Navbaruser from "../Layout/NavbarUser";
+
 
 class FavListpage extends Component {
     render() {
         return (
             <BrowserRouter>
     			<div className="Landingpage">
-    				<Navbar />
+                <div>
+<Navbaruser />
+</div>
 					
     				<h1><center>Favorites List</center></h1>
                     

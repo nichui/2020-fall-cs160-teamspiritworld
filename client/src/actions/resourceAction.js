@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {GET_RESOURCES,GET_RESOURCE,RESOURCES_LOADING,FETCH_ALL_POSTS_FAILURE,
     FETCH_ALL_POSTS_SUCCESS,
-    FETCH_ALL_POSTS_REQUEST} from '../actions/types';
+    FETCH_ALL_POSTS_REQUEST,
+    SEARCH_QUERY} from '../actions/types';
 import {returnErrors} from "./errorAction"
 /*
 export function getPopularResources(
@@ -56,33 +57,80 @@ export function getResource(resourceId){
     };
   };
   */
- export const getPopularResources = () => (dispatch) => {
-    /*
-    const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-    //Request body
+ export const getCategories = async ()=>
     
-    const body = JSON.stringify({
-      title, content,category,rating
-    });
-    */
-    dispatch({ type: FETCH_ALL_POSTS_REQUEST });
+   
+  //dispatch(setItemsLoading());
+  await axios
+    .get('/api/categories')
+    
+   
+   
+
+export const getCategory = (slug) =>(dispatch) => {
+   
+  dispatch(setItemsLoading());
+  axios
+    .get(`/api/resources/category/${slug}`)
+    .then(response => 
+      //const resources = response.data;
+      dispatch({ type: GET_RESOURCES, payload: response.data })
+    )
+    .catch((err) => 
+      dispatch(returnErrors(
+       err.response.data,
+      ))
+      );
+    
+};
+ export const getResourcesByCount = async (count) => 
+   
+   // dispatch(setItemsLoading());
+     axios
+      .get(`/api/resources/${count}`);
+     
+      
+  
+  export const getResource = (resourceId) => (dispatch) => {
+   
+    dispatch(setItemsLoading());
     axios
-      .get("/api/resources/popular")
-      .then((response) => {
+      .get(`/api/resources/resource?id=${resourceId}`)
+      .then(response => 
         //const resources = response.data;
-        dispatch({ type: FETCH_ALL_POSTS_SUCCESS, payload: response.data });
-      })
-      .catch((err) => {
-        dispatch({
-          type: FETCH_ALL_POSTS_FAILURE,
-          payload: "Something went wrong while fetching all the resources",
-        });
-      });
-  };
+        dispatch({ type: GET_RESOURCE, payload: response.data })
+      )
+      .catch((err) => 
+        dispatch(returnErrors(
+         err.response.data,
+        ))
+        );
+  }
+  export const fetchResourcesByFilter = async (arg)  => 
+   
+    
+   axios
+      .post('/api/resources/search/filters',arg)
+      
+      
+  
+  /*
+  export const getResources = (sort,order, page) => (dispatch) => {
+    dispatch(setItemsLoading());
+    axios
+      .get(`/api/resources/`,sort,order,page)
+      .then(response => 
+        //const resources = response.data;
+        dispatch({ type: GET_RESOURCES, payload: response.data })
+      )
+      .catch((err) => 
+        dispatch(returnErrors(
+         err.response.data,
+        ))
+        );
+
+  }
+  */
   export const setItemsLoading = () => {
     return {
       type: RESOURCES_LOADING

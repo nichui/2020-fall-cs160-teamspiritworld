@@ -25,16 +25,12 @@ import {
     GET_RESOURCES,
     GET_RESOURCE,
     RESOURCES_LOADING,
-    FETCH_ALL_POSTS_REQUEST,
-  FETCH_ALL_POSTS_SUCCESS,
-  FETCH_ALL_POSTS_FAILURE,
+    
 } from '../actions/types';
 
 const initialState = {
     resources: [],
-    //resource: null,
     loading: false,
-    error:'',
   };
   
 export default function(state=initialState,action){
@@ -44,24 +40,14 @@ export default function(state=initialState,action){
             return {...state, single: action.payload }
        
         case GET_RESOURCES:
-            return {...state, resources: action.payload, loading: false }
-        case FETCH_ALL_POSTS_REQUEST:
-         return {
-        ...state,
-        loading: true
-      };
-      case FETCH_ALL_POSTS_SUCCESS:
-        return {
-            ...state,
-            loading: false,
-            resources: action.payload,
-          };
-          case FETCH_ALL_POSTS_FAILURE:
+            return {...state, resources: action.payload, loading: false };
+
+        case RESOURCES_LOADING:
             return {
-              ...state,
-              loading: false,
-              error: action.payload,
-            };
+                ...state,
+                loading: true
+            }
+        
         default:
             return state;
     }

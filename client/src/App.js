@@ -20,6 +20,8 @@ import Contactpage from './components/Pages/Contact';
 
 import PrivateRoute from "./components/private-route/privateRoute";
 import Home from "./components/Pages/Home";
+import Resource from "./components/Pages/Resource";
+
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -47,11 +49,14 @@ class App extends Component {
     				<Route path="/" exact component={Landingpage} />            		
 					<Route path="/register" component={Registerpage} />
     				<Route path="/signin" component={Login} />
-					<Route path="/profile" component={Profilepage} />
-					<Route path="/favlist" component={FavListpage} />
-                    <Route path="/contactus" component={Contactpage} />
+					
 					<Switch>
-              				<PrivateRoute exact path="/home" component={Home} />
+              			<PrivateRoute exact path="/home/resources" component={Home} />
+						<PrivateRoute path="/profile" component={Profilepage} />
+						<PrivateRoute path="/fav-list" component={FavListpage} />
+                    	<PrivateRoute path="/contact-us" component={Contactpage} />
+						<PrivateRoute path="/resource/:id" component={Resource} />
+
             		</Switch>
     				
     				
