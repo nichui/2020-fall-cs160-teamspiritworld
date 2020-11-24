@@ -13,7 +13,8 @@ const config = {
  
 
       SECRET:'SUPERSECRETPASSWORD123',
-      DATABASE: 'mongodb://localhost:27017/spiritworld',
+      //DATABASE: 'mongodb://localhost:27017/spiritworld',
+      DATABASE: 'mongodb+srv://spiritworld:pass123@cluster0.nsx0a.mongodb.net/DB?retryWrites=true&w=majority',
       //cloud_name: 'drfqvbb8y',
      //api_key: '145231154474129',
       //api_secret: 'btnli3W8SIMxe7I4rgcsSYjg-10'
