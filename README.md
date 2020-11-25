@@ -123,3 +123,33 @@ and select the “raw” and “JSON” options.
 Make sure the request is POST. You should be able to see the response at the bottom, and the status on the top right of the bottom field. For failed API calls, you will get a `Status: 404 Not Found`.
 
 
+**Automated Testing**
+
+*Documentation for Selenium build and setup.*
+
+Technical notes (setup and development of test script) 
+Download Selenium libraries from: https://github.com/SeleniumHQ/selenium/wiki/Getting-Started
+
+NOTE: Build path to Selenium archive to JAR file by exporting environment variable “CLASSPATH” (can look at environmental variables with command “printenv” on Mac, and “set” on Windows). I included some Windows and Mac commands since we all use different OS.
+For instance, I created a folder “javaLib” under my Documents directory to hold the contents from unzipping the JAR file.
+
+You may first try to compile in the Eclipse IDE, but this may result in errors because of build path issues. If it doesn’t build in Eclipse, you can read some notes below to run commands in terminal to set up your development environment and set up Selenium.
+
+* Downloaded JAR file must be unzipped (jar xf selenium-server-standalone-3.9.1.jar)  
+* CLASSPATH should point to that directory 
+    * pwd → get current directory path (mac)  
+        * echo %cd% (windows) 
+    * cp <selenium downloaded file> <new path to store JAR file> (Mac) 
+        * copy <selenium download file> <new path to store JAR file> (windows) 
+    * Example command I used to set env variable: 
+        * export CLASSPATH=/Users/schi/Documents/javaLib/selenium-server-standalone-3.9.1 (Mac) 
+        * set CLASSPATH=/Users/schi/Documents/javaLib/selenium-server-standalone-3.9.1 (Windows) 
+    * The path MUST BE the path to the selenium unzipped contents, NOT the jar file itself 
+* Selenium archive link and version I used: http://selenium-release.storage.googleapis.com/index.html?path=3.9/ 
+After setting up the development environment, run the example Java program from https://github.com/SeleniumHQ/selenium/wiki/Getting-Started
+	
+This includes all the set up for development environment, backend, and testing. 
+
+
+
+
