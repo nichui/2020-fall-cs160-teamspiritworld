@@ -64,3 +64,34 @@ npm install react-router-dom
 npm install react-star-ratings
 npm install reactstrap
 npm install redux
+
+**Pushing code and creating pull requests**
+
+To push new code into “master” and create a pull request for the team to review. Users must first do a `git checkout -b <newbranch_name>`. To create a branch off of master, enter command: `git checkout -b <branch> origin/master`. There may be some errors pushing from a branch if there’s untracked files and changes to not be committed in the specific branch. 
+
+**NOTE**: Always make sure to check your commits and changes and your branch with `git status` before committing/pushing files. 
+
+At least one member of the team must review the pull request and the member must notify the team of the new pull request before pushing to master. Then the team has to pull or fetch the new changes from master to reflect the new changes in the codebase. 
+
+Example output and clean up:
+```
+sarah_chi@Sarahs-MacBook-Pro components % git status
+On branch sarah
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../../../README.md
+	modified:   Pages/Profile.js
+	modified:   Pages/Signin.js
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../../.eslintcache
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+A quick way to get rid of unstaged changes is the command: `git stash save --keep-index --include-untracked`
+Users can also use `git clean` to restore and remove changes not staged for commit. 
+
+For bug updates and fixes to the code, users can cherry-pick a commit, that is, pick a commit out of a branch to be pushed to master. This should ideally be used for small bux fixes of a feature. 
