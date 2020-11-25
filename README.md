@@ -109,6 +109,7 @@ Example Request: API call for registering a user during sign up.
 Click next to Runner on top left, the square icon with the plus sign. And open up a new tab. Type “http://local:3002/api/users/register” to the text field.
 
 Go to the body tab, type in some data: Example below
+```
 {
      "firstname": "James",
       "lastname":"Jones",
@@ -116,7 +117,9 @@ Go to the body tab, type in some data: Example below
      "password": "password123",
      "password2": "password123" 
 }
+```
 
 and select the “raw” and “JSON” options.
 Make sure the request is POST. You should be able to see the response at the bottom, and the status on the top right of the bottom field. For failed API calls, you will get a `Status: 404 Not Found`.
+
 
