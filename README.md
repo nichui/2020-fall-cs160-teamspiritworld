@@ -74,12 +74,13 @@ npm install redux
 
 **Pushing code and creating pull requests**
 
-To push new code into “master” and create a pull request for the team to review. Users must first do a `git checkout -b <newbranch_name>`. To create a branch off of master, enter command: `git checkout -b <branch> origin/master`. There may be some errors pushing from a branch if there’s untracked files and changes to not be committed in the specific branch. 
+To push new code into “master” and create a pull request for the team to review, users must first do a `git checkout -b <newbranch_name>`. To create a branch off of master, enter command: `git checkout -b <branch> origin/master`. There may be some errors pushing from a branch if there’s untracked files and changes to not be committed in the specific branch. 
 
 **NOTE**: Always make sure to check your commits and changes and your branch with `git status` before committing/pushing files. 
 
 At least one member of the team must review the pull request and the member must notify the team of the new pull request before pushing to master. Then the team has to pull or fetch the new changes from master to reflect the new changes in the codebase. 
 
+To clean up untracked files, users must do a `git add` of the specified file changes, and discard other file changes that are not to be committed. 
 Example output and clean up:
 ```
 sarah_chi@Sarahs-MacBook-Pro components % git status
@@ -102,6 +103,10 @@ A quick way to get rid of unstaged changes is the command: `git stash save --kee
 Users can also use `git clean` to restore and remove changes not staged for commit. 
 
 For bug updates and fixes to the code, users can cherry-pick a commit, that is, pick a commit out of a branch to be pushed to master. This should ideally be used for small bux fixes of a feature. 
+
+External links that may be helpful:
+https://git-scm.com/docs
+https://git-scm.com/docs/git-cherry-pick
 
 **Backend API testing** 
 
@@ -129,6 +134,8 @@ Go to the body tab, type in some data: Example below
 and select the “raw” and “JSON” options.
 Make sure the request is POST. You should be able to see the response at the bottom, and the status on the top right of the bottom field. For failed API calls, you will get a `Status: 404 Not Found`.
 
+External links that may be helpful: 
+https://learning.postman.com/docs/sending-requests/requests/
 
 **Automated Testing**
 
@@ -157,6 +164,9 @@ After setting up the development environment, run the example Java program from 
 	
 This includes all the set up for development environment, backend, and testing. 
 
+External links that may be helpful: 
+https://www.selenium.dev/documentation/en/
+https://docs.cypress.io/guides/getting-started/writing-your-first-test.html
 
 **NPM RUN DEV SERVER OUTPUT EXAMPLE**
 ```
