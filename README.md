@@ -151,5 +151,34 @@ After setting up the development environment, run the example Java program from 
 This includes all the set up for development environment, backend, and testing. 
 
 
+**NPM RUN DEV SERVER OUTPUT EXAMPLE**
+sarah_chi@Sarahs-MacBook-Pro 2020-fall-cs160-teamspiritworld % npm run dev
 
+> spiritworld@1.0.0 dev /Users/sarah_chi/Documents/CS160/SpiritWorld/2020-fall-cs160-teamspiritworld
+> concurrently "npm run server" "npm run client"
 
+[1] 
+[1] > spiritworld@1.0.0 client /Users/sarah_chi/Documents/CS160/SpiritWorld/2020-fall-cs160-teamspiritworld
+[1] > npm run start --prefix client
+[1] 
+[0] 
+[0] > spiritworld@1.0.0 server /Users/sarah_chi/Documents/CS160/SpiritWorld/2020-fall-cs160-teamspiritworld
+[0] > nodemon server/server.js
+[0] 
+[1] 
+[1] > spiritworld@0.1.0 start /Users/sarah_chi/Documents/CS160/SpiritWorld/2020-fall-cs160-teamspiritworld/client
+[1] > react-scripts start
+[1] 
+[0] [nodemon] 2.0.4
+[0] [nodemon] to restart at any time, enter `rs`
+[0] [nodemon] watching path(s): *.*
+[0] [nodemon] watching extensions: js,mjs,json
+[0] [nodemon] starting `node server/server.js`
+[0] SERVER RUNNING ON PORT 3002
+[0] MongoDB Connected...
+[1] ℹ ｢wds｣: Project is running at http://192.168.1.116/
+[1] ℹ ｢wds｣: webpack output is served from 
+[1] ℹ ｢wds｣: Content not from webpack is served from /Users/sarah_chi/Documents/CS160/SpiritWorld/2020-fall-cs160-teamspiritworld/client/public
+[1] ℹ ｢wds｣: 404s will fallback to /
+[1] Starting the development server...
+[1] 
