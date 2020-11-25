@@ -46,11 +46,13 @@ git clone https://github.com/nichui/2020-fall-cs160-teamspiritworld.git
 
 Note: Windows users must have “git” installed in their system. 
 
-Navigate to the 2020-fall-cs160-teamspiritworld folder in the directory and launch the application by running “npm run dev” in the command. There may be several node modules dependency errors when launching the application due to different OS and machines and development tools. For instance, some errors may look like: 
+Navigate to the 2020-fall-cs160-teamspiritworld folder in the directory and launch the application by running “npm run dev” in the command. There may be several node modules dependency errors when launching the application due to different OS and machines and development tools. For instance, some errors may look like:
+```
  ./src/reducers/indexRootReducer.js
 Module not found: Can't resolve 'redux' in '/Users/<path>/2020-fall-cs160-teamspiritworld-master/client/src/reducers'
+```
 
-The user then has to install the module that is not found, from the example error output above, the user has to “npm install redux”. 
+The user then has to install the module that is not found, from the example error output above, the user has to `npm install redux`. 
 
 Several node modules I had to install independently on my Mac Catalina machine:
 ```
