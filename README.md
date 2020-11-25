@@ -14,7 +14,7 @@ with Node.js and Express.js. We are storing the user information into a mongoDB 
 To validate user login, we plan to check the user input at the sign in and login page, where SJSU students have
 to enter a valid SJSU email address. We want users to be able to rate their favorites resources, create a personalized set of resources in a list, and be able
 to categorize and filter their searches easily. 
-
+```
 Some brainstorm ideas for function/resources to be implemented:
   Connections (not faculty) → how info spreads (via classmates/peers/friends)
   Food pantry
@@ -26,15 +26,18 @@ Some brainstorm ideas for function/resources to be implemented:
     ENGR SCE Club Room → cheaper snacks 
   Recreation:
     VR room in MLK + recording room and drumset in 4th floor MLK
-    bowling alley/arcade
+    Bowling alley/arcade
     Rock climbing
-    music rooms
+    Music rooms
     Judo room in Yoshihiro Hall (provide a direction/location) 
-
+```
 
 **Getting started: Set up Developer/test environment**
 
 Run the React app. 
+
+You must also have the Chrome Redux extension installed to resolve "type error" compile issues.
+The extension can be downloaded at https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd.
 
 To start on launching the application, users must first clone the repository. 
 
@@ -50,6 +53,7 @@ Module not found: Can't resolve 'redux' in '/Users/<path>/2020-fall-cs160-teamsp
 The user then has to install the module that is not found, from the example error output above, the user has to “npm install redux”. 
 
 Several node modules I had to install independently on my Mac Catalina machine:
+```
 yarn add @ant-design/compatible
 npm install express
 npm install react
@@ -64,6 +68,7 @@ npm install react-router-dom
 npm install react-star-ratings
 npm install reactstrap
 npm install redux
+```
 
 **Pushing code and creating pull requests**
 
@@ -152,6 +157,7 @@ This includes all the set up for development environment, backend, and testing.
 
 
 **NPM RUN DEV SERVER OUTPUT EXAMPLE**
+```
 sarah_chi@Sarahs-MacBook-Pro 2020-fall-cs160-teamspiritworld % npm run dev
 
 > spiritworld@1.0.0 dev /Users/sarah_chi/Documents/CS160/SpiritWorld/2020-fall-cs160-teamspiritworld
@@ -182,3 +188,4 @@ sarah_chi@Sarahs-MacBook-Pro 2020-fall-cs160-teamspiritworld % npm run dev
 [1] ℹ ｢wds｣: 404s will fallback to /
 [1] Starting the development server...
 [1] 
+```
