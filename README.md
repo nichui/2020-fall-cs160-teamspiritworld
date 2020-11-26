@@ -1,6 +1,6 @@
 # 2020-fall-cs160-teamspiritworld
 
-Spirit World
+# Spirit World
 
 Distributing knowledge of resources effectively (info sharing / crowdsourcing web app)
 
@@ -8,7 +8,7 @@ VISION: For current SJSU students who are unaware of many different resources an
 Spirit World is a web application that provides students with easier access to more organized resources. 
 Unlike the SAMMY app, our product provides a personalized set of resources based on users’ needs.
 
-For the front end web server, we are using HTML, CSS, JS, React.js, and Express.js, which will be connecting to the app server
+For the front end web server, we are using HTML, CSS, JS, and React.js, which will be connecting to the app server
 with Node.js and Express.js. We are storing the user information into a mongoDB database. 
 
 To validate user login, we plan to check the user input at the sign in and login page, where SJSU students have
@@ -32,7 +32,7 @@ Some brainstorm ideas for function/resources to be implemented:
     Judo room in Yoshihiro Hall (provide a direction/location) 
 ```
 
-**Getting started: Set up Developer/test environment**
+### Getting started: Set up Developer/test environment
 
 Run the React app. 
 
@@ -44,15 +44,15 @@ To start on launching the application, users must first clone the repository.
 To clone the git repo (using terminal), go to the green “code” button and copy the HTTPS URL link to the clipboard. Then open up the terminal (Mac/Linux) or command prompt (Windows), and enter the following command in any directory of your choosing:
 git clone https://github.com/nichui/2020-fall-cs160-teamspiritworld.git
 
-Note: Windows users must have “git” installed in their system. 
+Note: Windows users must have `git` installed in their system. 
 
-Navigate to the 2020-fall-cs160-teamspiritworld folder in the directory and launch the application by running “npm run dev” in the command. There may be several node modules dependency errors when launching the application due to different OS and machines and development tools. For instance, some errors may look like:
+Navigate to the `2020-fall-cs160-teamspiritworld` folder in the directory and launch the application by running “npm run dev” in the command. There may be several node module dependency errors when launching the application due to different OS and machines and development tools. For instance, some errors may look like:
 ```
  ./src/reducers/indexRootReducer.js
 Module not found: Can't resolve 'redux' in '/Users/<path>/2020-fall-cs160-teamspiritworld-master/client/src/reducers'
 ```
 
-The user then has to install the module that is not found, from the example error output above, the user has to `npm install redux`. 
+The user then has to install the module that is not found, for instance from the example error output above, the user has to `npm install redux`. 
 
 Several node modules I had to install independently on my Mac Catalina machine:
 ```
@@ -72,9 +72,9 @@ npm install reactstrap
 npm install redux
 ```
 
-**Pushing code and creating pull requests**
+### Pushing code and creating pull requests
 
-To push new code into “master” and create a pull request for the team to review, users must first do a `git checkout -b <newbranch_name>`. To create a branch off of master, enter command: `git checkout -b <branch> origin/master`. There may be some errors pushing from a branch if there’s untracked files and changes to not be committed in the specific branch. 
+To push new code into the “master” branch and create a pull request for the team to review, users must first do a `git checkout -b <newbranch_name>`. To create a branch off of master, enter command: `git checkout -b <branch> origin/master`. There may be some errors pushing from a branch if there are untracked files and changes not to be committed in the specific branch. 
 
 **NOTE**: Always make sure to check your commits and changes and your branch with `git status` before committing/pushing files. 
 
@@ -99,7 +99,7 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-A quick way to get rid of unstaged changes is the command: `git stash save --keep-index --include-untracked`
+A quick way to get rid of unstaged changes is the command: `git stash save --keep-index --include-untracked`.
 Users can also use `git clean` to restore and remove changes not staged for commit. 
 
 For bug updates and fixes to the code, users can cherry-pick a commit, that is, pick a commit out of a branch to be pushed to master. This should ideally be used for small bux fixes of a feature. 
@@ -108,7 +108,8 @@ External links that may be helpful:
 https://git-scm.com/docs
 https://git-scm.com/docs/git-cherry-pick
 
-**Backend API testing** 
+
+### Backend API testing
 
 Our team uses Postman to test the backend API requests for the users.
 
@@ -132,12 +133,13 @@ Go to the body tab, type in some data: Example below
 ```
 
 and select the “raw” and “JSON” options.
+
 Make sure the request is POST. You should be able to see the response at the bottom, and the status on the top right of the bottom field. For failed API calls, you will get a `Status: 404 Not Found`.
 
 External links that may be helpful: 
 https://learning.postman.com/docs/sending-requests/requests/
 
-**Automated Testing**
+### Automated Testing 
 
 *Documentation for Selenium build and setup.*
 
@@ -168,7 +170,7 @@ External links that may be helpful:
 https://www.selenium.dev/documentation/en/
 https://docs.cypress.io/guides/getting-started/writing-your-first-test.html
 
-**NPM RUN DEV SERVER OUTPUT EXAMPLE**
+### NPM RUN DEV SERVER OUTPUT EXAMPLE
 ```
 sarah_chi@Sarahs-MacBook-Pro 2020-fall-cs160-teamspiritworld % npm run dev
 
