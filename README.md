@@ -74,7 +74,7 @@ npm install redux
 
 ### Pushing code and creating pull requests
 
-To push new code into the “master” branch and create a pull request for the team to review, users must first do a `git checkout -b <newbranch_name>`. To create a branch off of master, enter command: `git checkout -b <branch> origin/master`. There may be some errors pushing from a branch if there are untracked files and changes not to be committed in the specific branch. 
+To push new code into the “master” branch and create a pull request for the team to review, users must first do a `git checkout -b <newbranch_name>`. To create a branch off of master, enter command: `git checkout -b <branch> origin/master`. There may be some errors pushing from a branch if there are untracked files and changes not to be committed in the specific branch. New branches are created for each feature and for each individual member to push bug fixes or other specific changes to be implemented in the sprint backlog. The backlog can be accessed at https://www.notion.so/58e4ee83589142ff8d50e99c895ee2ae?v=d5db39d357dd489396e24b61855c0fbf. 
 
 **NOTE**: Always make sure to check your commits and changes and your branch with `git status` before committing/pushing files. 
 
