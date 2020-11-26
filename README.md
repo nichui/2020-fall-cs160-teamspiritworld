@@ -11,8 +11,8 @@ Unlike the SAMMY app, our product provides a personalized set of resources based
 For the front end web server, we are using HTML, CSS, JS, and React.js, which will be connecting to the app server
 with Node.js and Express.js. We are storing the user information into a mongoDB database. 
 
-To validate user login, we plan to check the user input at the sign in and login page, where SJSU students have
-to enter a valid SJSU email address. We want users to be able to rate their favorites resources, create a personalized set of resources in a list, and be able
+To validate user login, we check the user input at the sign in and login page, where SJSU students have
+to enter a valid SJSU email address. Users are able to rate their favorites resources, create a personalized set of resources in a list, and be able
 to categorize and filter their searches easily. 
 ```
 Some brainstorm ideas for function/resources to be implemented:
@@ -164,7 +164,6 @@ You may first try to compile in the Eclipse IDE, but this may result in errors b
 * Selenium archive link and version I used: http://selenium-release.storage.googleapis.com/index.html?path=3.9/ 
 After setting up the development environment, run the example Java program from https://github.com/SeleniumHQ/selenium/wiki/Getting-Started
 	
-This includes all the set up for development environment, backend, and testing. 
 
 External links that may be helpful: 
 https://www.selenium.dev/documentation/en/
@@ -182,6 +181,7 @@ MongoDB Compass can be downloaded at https://www.mongodb.com/products/compass.
 Set up Connection Security and connect to MongoDB Compass with the connection string. 
 To deploy a new cluster, check out this external link to the MongoDB Cloud documentation: https://docs.atlas.mongodb.com/tutorial/deploy-free-tier-cluster/#procedure.
 
+This includes all the set up for development environment, backend, and testing. 
 
 ### NPM RUN DEV SERVER OUTPUT EXAMPLE
 ```
