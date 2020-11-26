@@ -170,6 +170,19 @@ External links that may be helpful:
 https://www.selenium.dev/documentation/en/
 https://docs.cypress.io/guides/getting-started/writing-your-first-test.html
 
+
+### Database MongoDB Cluster setup
+
+We use MongoDB for our database. We store the data in a cloud database using MongoDB Atlas. 
+You can link MongoDB Compass (the GUI) to the cluster. 
+You can log in through this link: https://account.mongodb.com/account/login to view the cluster and data. 
+
+MongoDB Compass can be downloaded at https://www.mongodb.com/products/compass.
+
+Set up Connection Security and connect to MongoDB Compass with the connection string. 
+To deploy a new cluster, check out this external link to the MongoDB Cloud documentation: https://docs.atlas.mongodb.com/tutorial/deploy-free-tier-cluster/#procedure.
+
+
 ### NPM RUN DEV SERVER OUTPUT EXAMPLE
 ```
 sarah_chi@Sarahs-MacBook-Pro 2020-fall-cs160-teamspiritworld % npm run dev
