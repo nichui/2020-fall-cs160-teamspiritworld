@@ -1,0 +1,45 @@
+module.exports.firstTitle = [
+    'SJSU',
+    'SJSU',
+    'SJSU',
+    'SJSU',
+    'SJSU',
+    'SJSU',
+    'SJSU',
+    'SJSU',
+    'SJSU',
+    'SJSU',
+    'SJSU',
+    'SJSU',
+    'SJSU',
+    'SJSU',
+    'SJSU',
+    'SJSU',
+    'SJSU',
+    'SJSU'
+]
+
+module.exports.secondTitle = [
+    'Stadium',
+    'Village',
+    'Parking North',
+    'Parking West',
+    'Parking South',
+    'Duncan Hall',
+    'Business Tower',
+    'Computer Center',
+    'Bowling',
+    'Clark Hall',
+    'Enginerring Building',
+    'Industrial Studies',
+    'MacQuarrie Hall',
+    'Music Building',
+    'Science Building',
+    'Health Building',
+    'Faculty Offices',
+    'Library',
+    'Spartan Complex Central',
+    'Spartan Complex Ease',
+    'Student Wellness Center'
+]
+

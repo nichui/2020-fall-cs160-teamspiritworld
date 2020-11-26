@@ -1,0 +1,44 @@
+<% layout('/WebpageLayouts/Decoration') %>
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card mb-3">
+            <img src="<%= resource.image%>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><%= resource.title%></h5>
+                <p class="card-text"><%= resource.content%></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item text-muted"><%= resource.location%></li>
+                <li class="list-group-item"><%= resource.category%></li>
+            </ul>
+            <div class="card-body">
+
+                <a class="card-link btn btn-info" href="/resources/<%= resource._id%>/EditResource">Edit Resource</a>
+                <form class="d-inline" action="/resources/<%=resource._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete Resource</button>
+                </form>
+            </div>
+            <div class ="card-footer text-muted">
+                <a href="/resources">All Resources</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<h1><%= resource.title%></h1>
+<h2><%= resource.location%></h2>
+<h3><%= resource.category%></h3>
+<img src="<%= resource.image%>" alt="">
+    <p>
+        <%= resource.content%>
+    </p>
+    <p>
+
+    </p>
+    <p>
+
+    </p>-->
+<footer>
+
+</footer>
