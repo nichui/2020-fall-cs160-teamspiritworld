@@ -35,7 +35,7 @@ const ResourceCard = ({title,content, category,image,rating,slug }) => {
 */
 
 
-const ResourceCard = ({
+const FavCard = ({
   title,
   content,
   category, image,
@@ -123,4 +123,4 @@ const mapStateToProps = (state) => {
 };
 */
 //export default connect(mapStateToProps)(Resource);
-export default ResourceCard;
+export default FavCard;

@@ -22,10 +22,11 @@ const Search = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        history.push(`/home/resources?${text}`)
+        history.push(`/api/resources/resource?title=${text}`)
 
     }
     return (
+
         <form className= "form-inline my-2 my-lg-0" onSubmit={handleSubmit}>
             <input
             onChange={handleChange}
