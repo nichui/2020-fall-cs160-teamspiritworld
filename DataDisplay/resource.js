@@ -11,7 +11,12 @@ const ResourceSchema = new Schema({
     reviews:[{
         type: Schema.Types.ObjectId,
         ref: 'Review'
-    }]
+    }],
+    author:{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
+
 });
 
 ResourceSchema.post('findOneAndDelete', async function(document){

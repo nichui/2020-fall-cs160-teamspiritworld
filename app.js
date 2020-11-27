@@ -11,9 +11,13 @@ const {resourceSchema, reviewSchema} = require('./ValidateSchemas.js');
 const Resource = require('./DataDisplay/resource');
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./DataDisplay/user');
+const userRoutes = require('./ResourceRoutes/users');
 
-const resources = require('./ResourceRoutes/resources');
-const reviews = require('./ResourceRoutes/reviews');
+const resourcesRoutes = require('./ResourceRoutes/resources');
+const reviewsRoutes = require('./ResourceRoutes/reviews');
 
 
 mongoose.connect('mongodb://localhost:27017/spirit-world',{
@@ -53,15 +57,31 @@ const sessionConfig={
 }
 app.use(session(sessionConfig))
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use((request, response, next) =>{
+    console.log(request.session)
+    response.locals.currentUser = request.user;
+    //console.log(response.locals.currentUser);
     response.locals.success = request.flash('success');
     response.locals.error =  request.flash('error');
     next();
 })
 
-app.use('/resources', resources)
-app.use('/resources/:id/reviews', reviews)
+app.get('/testUser', async(request, response) =>{
+    const user = new User({email: 'Karik@sjsu.edu', username: 'Karik'})
+    const newUser =  await User.register(user, 'chicken');
+    response.send(newUser);
+})
+
+app.use('/', userRoutes)
+app.use('/resources', resourcesRoutes)
+app.use('/resources/:id/reviews', reviewsRoutes)
+
 
 app.get('/', (req, res) => {
     res.render('home')

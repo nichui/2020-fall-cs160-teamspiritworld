@@ -5,6 +5,7 @@ const ValidateError = require('../WebpageDisplay/Utility/ValidateError');
 const Resource = require('../DataDisplay/resource');
 const Review = require('../DataDisplay/reviewResource');
 const {resourceSchema, reviewSchema} = require('../ValidateSchemas.js');
+const {isLoggedIn} = require('../generic');
 
 
 const validateResource = (request, response, next) =>{
@@ -28,12 +29,12 @@ router.get('/', catchAsync(async(req,res) =>{
 }))
 
 //new Resources
-router.get('/AddResource', (req, res) =>{
+router.get('/AddResource', isLoggedIn, (req, res) =>{
     res.render('resources/AddResource');
 })
 
 // Create new Resource
-router.post('/', validateResource, catchAsync(async(req, res, next) =>{
+router.post('/', isLoggedIn ,validateResource, catchAsync(async(req, res, next) =>{
 
     /*if(!req.body.resource){
         throw new ValidateError('Invalid Resource Data', 400);
@@ -81,7 +82,7 @@ router.get('/:id', catchAsync(async(req,res) =>{
 }))
 
 // Edit Resources
-router.get('/:id/EditResource', catchAsync(async(req,res) =>{
+router.get('/:id/EditResource', isLoggedIn,catchAsync(async(req,res) =>{
     const resource = await Resource.findById(req.params.id)
     if(!resource){
         req.flash('error', 'The Resource can not be found!');
@@ -91,7 +92,7 @@ router.get('/:id/EditResource', catchAsync(async(req,res) =>{
 }))
 
 // Update Resources
-router.put('/:id', validateResource,catchAsync(async(req, res) =>{
+router.put('/:id', isLoggedIn, validateResource,catchAsync(async(req, res) =>{
     const {id} = req.params;
     const resource = await Resource.findByIdAndUpdate(id, {...req.body.resource});
     req.flash('success', 'Resource is successfully updated!!!');
@@ -99,7 +100,7 @@ router.put('/:id', validateResource,catchAsync(async(req, res) =>{
 }))
 
 //Delete Resources
-router.delete('/:id', catchAsync(async(req, res) =>{
+router.delete('/:id', isLoggedIn, catchAsync(async(req, res) =>{
     const {id} = req.params;
     await Resource.findByIdAndDelete(id);
     req.flash('success', 'Resource is successfully deleted')
