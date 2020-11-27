@@ -5,8 +5,9 @@ const MethodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const catchAsync = require('./WebpageDisplay/Utility/CatchAsync');
 const ValidateError = require('./WebpageDisplay/Utility/ValidateError');
+const Review = require('./DataDisplay/reviewResource')
 //const Joi = require('joi');
-const {resourceSchema} = require('./ValidateSchemas.js');
+const {resourceSchema, reviewSchema} = require('./ValidateSchemas.js');
 const Resource = require('./DataDisplay/resource');
 
 
@@ -36,6 +37,18 @@ const validateResource = (request, response, next) =>{
 
     const {error} = resourceSchema.validate(request.body);
 
+    if(error){
+        const message = error.details.map(element => element.message).join(',')
+        throw new ValidateError(message, 400)
+    }
+    else
+    {
+        next();
+    }
+}
+
+const validateReview = (request, response, next) =>{
+    const{error} = reviewSchema.validate(request.body);
     if(error){
         const message = error.details.map(element => element.message).join(',')
         throw new ValidateError(message, 400)
@@ -102,7 +115,8 @@ app.post('/resources', validateResource, catchAsync(async(req, res, next) =>{
 }))
 
 app.get('/resources/:id', catchAsync(async(req,res) =>{
-    const resource = await Resource.findById(req.params.id)
+    const resource = await Resource.findById(req.params.id).populate('reviews');
+    //console.log(resource);
     res.render('resources/ShowResource', {resource});
 }))
 
@@ -121,6 +135,22 @@ app.delete('/resources/:id', catchAsync(async(req, res) =>{
     const {id} = req.params;
     await Resource.findByIdAndDelete(id);
     res.redirect('/resources');
+}))
+
+app.post('/resources/:id/reviews', validateReview, catchAsync(async(request, response) =>{
+    const resource = await Resource.findById(request.params.id);
+    const review = new Review(request.body.review);
+    resource.reviews.push(review);
+    await review.save();
+    await resource.save();
+    response.redirect(`/resources/${resource._id}`);
+}))
+
+app.delete('/resources/:id/reviews/:reviewId', catchAsync(async(request, response) =>{
+    const{id, reviewId} = request.params;
+    await Resource.findByIdAndUpdate(id, {$pull: { reviews: reviewId}});
+    await Review.findByIdAndDelete(request.params.reviewId);
+    response.redirect(`/resources/${id}`);
 }))
 
 app.all('*', (request, resolve, next) =>{
