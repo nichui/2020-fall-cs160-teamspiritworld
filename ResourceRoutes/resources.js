@@ -5,22 +5,10 @@ const ValidateError = require('../WebpageDisplay/Utility/ValidateError');
 const Resource = require('../DataDisplay/resource');
 const Review = require('../DataDisplay/reviewResource');
 const {resourceSchema, reviewSchema} = require('../ValidateSchemas.js');
-const {isLoggedIn} = require('../generic');
+const {isLoggedIn, isAdmin, validateResource} = require('../generic');
 
 
-const validateResource = (request, response, next) =>{
 
-    const {error} = resourceSchema.validate(request.body);
-
-    if(error){
-        const message = error.details.map(element => element.message).join(',')
-        throw new ValidateError(message, 400)
-    }
-    else
-    {
-        next();
-    }
-}
 
 //Resources index
 router.get('/', catchAsync(async(req,res) =>{
@@ -65,6 +53,7 @@ router.post('/', isLoggedIn ,validateResource, catchAsync(async(req, res, next) 
     }*/
     //console.log(result);
     const resource = new Resource(req.body.resource);
+    resource.author = req.user._id; // match author's name with corresponding resource
     await resource.save();
     req.flash('success', 'Successfully made a new Resource!');
     res.redirect(`/resources/${resource._id}`)
@@ -72,7 +61,12 @@ router.post('/', isLoggedIn ,validateResource, catchAsync(async(req, res, next) 
 
 // Show Resources pages
 router.get('/:id', catchAsync(async(req,res) =>{
-    const resource = await Resource.findById(req.params.id).populate('reviews');
+    const resource = await Resource.findById(req.params.id).populate({
+        path: 'reviews',
+        populate:{
+            path: 'author'
+        }
+    }).populate('author');
     //console.log(resource);
     if(!resource){
         req.flash('error', 'The Resource can not be found!');
@@ -82,25 +76,32 @@ router.get('/:id', catchAsync(async(req,res) =>{
 }))
 
 // Edit Resources
-router.get('/:id/EditResource', isLoggedIn,catchAsync(async(req,res) =>{
-    const resource = await Resource.findById(req.params.id)
+router.get('/:id/EditResource', isLoggedIn, isAdmin, catchAsync(async(req,res) =>{
+    const {id} = req.params;
+    const resource = await Resource.findById(id)
     if(!resource){
         req.flash('error', 'The Resource can not be found!');
         return res.redirect('/resources');
     }
+    /* if(!req.user._id.equals('5fc0bfa1b5254a2488b31aa8')) this one can make Teo1 is admin
+    * and admin is only one can edit resource*/
+    /*if current user's ID is different with author then can't edit resource*/
+    /*  */
+
     res.render('resources/EditResource', {resource});
 }))
 
 // Update Resources
-router.put('/:id', isLoggedIn, validateResource,catchAsync(async(req, res) =>{
+router.put('/:id', isLoggedIn, isAdmin, validateResource,catchAsync(async(req, res) =>{
     const {id} = req.params;
+
     const resource = await Resource.findByIdAndUpdate(id, {...req.body.resource});
     req.flash('success', 'Resource is successfully updated!!!');
     res.redirect(`/resources/${resource._id}`)
 }))
 
 //Delete Resources
-router.delete('/:id', isLoggedIn, catchAsync(async(req, res) =>{
+router.delete('/:id', isLoggedIn, isAdmin, catchAsync(async(req, res) =>{
     const {id} = req.params;
     await Resource.findByIdAndDelete(id);
     req.flash('success', 'Resource is successfully deleted')

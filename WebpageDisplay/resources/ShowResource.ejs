@@ -10,21 +10,28 @@
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item text-muted"><%= resource.location%></li>
+                <li class="list-group-item">Uploaded by <%= resource.author.username%></li>
                 <li class="list-group-item"><%= resource.category%></li>
             </ul>
+            <!--Replace live below with if(currentUser._id.equals('5fc0bfa1b5254a2488b31aa8')) {
+            will make Teo1 username as admin. Edit and Delete button only appears for admin -->
+            <!-- if currentUser exists and id is matched then current user is author and can have accesses -->
+            <!--if(currentUser && resource.author.equals(currentUser._id))-->
+            <% if(currentUser && resource.author.equals(currentUser._id)) {%>
             <div class="card-body">
-
                 <a class="card-link btn btn-info" href="/resources/<%= resource._id%>/EditResource">Edit Resource</a>
                 <form class="d-inline" action="/resources/<%=resource._id%>?_method=DELETE" method="POST">
                     <button class="btn btn-danger">Delete Resource</button>
                 </form>
             </div>
+            <% } %>
             <div class ="card-footer text-muted">
                 <a href="/resources">All Resources</a>
             </div>
         </div>
     </div>
     <div class="col-6">
+        <% if(currentUser) {%>
         <h2>Review for this resource: </h2>
         <form action="/resources/<%= resource._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
             <div class="mb-3">
@@ -40,17 +47,20 @@
             </div>
             <button class="btn btn-success"> Submit </button>
         </form>
+            <% } %>
         <% for(let review of resource.reviews) { %>
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Rating: <%= review.rating%></h5>
+                    <h5 class="card-title">Rating: <%= review.rating%> </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">By <%= review.author.username%></h6>
                     <p class="card-text">Review: <%= review.body %></p>
+                    <% if(currentUser && review.author.equals(currentUser._id)) { %>
                     <form action="/resources/<%=resource._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
                         <button class="btn btn-sm btn-danger">Delete</button>
                     </form>
+                    <% } %>
                 </div>
             </div>
-
         <% } %>
     </div>
 </div>

@@ -24,13 +24,14 @@ const randomDataDB = async() =>{
     await Resource.deleteMany({});
     /*const r = new Resource({title: 'SJSU Bowling'});
     await r.save();*/
-    for(let i = 0; i < 50; i++){
+    for(let i = 0; i < 10; i++){
         const ran = Math.floor(Math.random() * 1000);
         const resource = new Resource({
+            author: '5fc0b3c54cd5d712ccfc4fe0',
             location: `${buildings[ran].Room}, ${buildings[ran].Building}`,
             title: `${sample(firstTitle)} ${sample(secondTitle)}`,
             category: 'School Resources',
-            image: 'https://unsplash.com/collections/3420907/college',
+            image: 'https://source.unsplash.com/1600x900/?school,university',
             content: 'The Society of Asian Scientists & Engineers (SASE) at San Jose State University aims to fulfill the three pillar mission of SASE National'
         })
         await resource.save();
