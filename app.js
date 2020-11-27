@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 const path = require('path');
 const MethodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
+const catchAsync = require('./WebpageDisplay/Utility/CatchAsync');
+const ValidateError = require('./WebpageDisplay/Utility/ValidateError');
+//const Joi = require('joi');
+const {resourceSchema} = require('./ValidateSchemas.js');
 const Resource = require('./DataDisplay/resource');
 
 
@@ -28,6 +32,20 @@ app.set('views', path.join(__dirname, 'WebpageDisplay'))
 app.use(express.urlencoded({extended: true}))
 app.use(MethodOverride('_method'))
 
+const validateResource = (request, response, next) =>{
+
+    const {error} = resourceSchema.validate(request.body);
+
+    if(error){
+        const message = error.details.map(element => element.message).join(',')
+        throw new ValidateError(message, 400)
+    }
+    else
+    {
+        next();
+    }
+}
+
 app.get('/', (req, res) => {
     res.render('home')
 })
@@ -39,50 +57,84 @@ app.get('/', (req, res) => {
     res.send(resource)
 })*/
 
-app.get('/resources', async(req,res) =>{
+app.get('/resources', catchAsync(async(req,res) =>{
     const resources = await Resource.find({});
     res.render('resources/index', {resources})
-})
+}))
 
 app.get('/resources/AddResource', (req, res) =>{
     res.render('resources/AddResource');
 })
 
-app.post('/resources', async(req, res, next) =>{
-    try{
-        const resource = new Resource(req.body.resource);
-        await resource.save();
-        res.redirect(`/resources/${resource._id}`)
-    } catch(e){
-        next(e);
+
+app.post('/resources', validateResource, catchAsync(async(req, res, next) =>{
+    /*if(!req.body.resource){
+        throw new ValidateError('Invalid Resource Data', 400);
+    }*/
+    /*if(!req.body.resource.category)
+    {
+
     }
+    if(!req.body.resource.image)
+    {
 
-})
+    }*/
+    /*const resourceSchema = Joi.object({
+        resource: Joi.object({
+            title: Joi.string().required(),
+            //title: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['sjsu.edu'] } }).required(),
+            category: Joi.string().required(),
+            image: Joi.string().required(),
+            location: Joi.string().required(),
+            content: Joi.string().required(),
+        }).required()
+    })
+    const {error} = resourceSchema.validate(req.body);
 
-app.get('/resources/:id', async(req,res) =>{
+    if(error){
+        const message = error.details.map(element => element.message).join(',')
+        throw new ValidateError(message, 400)
+    }*/
+    //console.log(result);
+    const resource = new Resource(req.body.resource);
+    await resource.save();
+    res.redirect(`/resources/${resource._id}`)
+}))
+
+app.get('/resources/:id', catchAsync(async(req,res) =>{
     const resource = await Resource.findById(req.params.id)
     res.render('resources/ShowResource', {resource});
-})
+}))
 
-app.get('/resources/:id/EditResource', async(req,res) =>{
+app.get('/resources/:id/EditResource', catchAsync(async(req,res) =>{
     const resource = await Resource.findById(req.params.id)
     res.render('resources/EditResource', {resource});
-})
+}))
 
-app.put('/resources/:id', async(req, res) =>{
+app.put('/resources/:id', validateResource,catchAsync(async(req, res) =>{
     const {id} = req.params;
     const resource = await Resource.findByIdAndUpdate(id, {...req.body.resource});
     res.redirect(`/resources/${resource._id}`)
-})
+}))
 
-app.delete('/resources/:id', async(req, res) =>{
+app.delete('/resources/:id', catchAsync(async(req, res) =>{
     const {id} = req.params;
     await Resource.findByIdAndDelete(id);
     res.redirect('/resources');
+}))
+
+app.all('*', (request, resolve, next) =>{
+    next(new ValidateError('Page Not Found', 404))
 })
 
-app.use((error, require, resolve, next) => {
-    resolve.send('Something went wrong!')
+app.use((error, request, resolve, next) => {
+    const {statusCode = 500, message='Something went wrong'} = error;
+    if(!error.message){
+        error.message = 'Something went wrong!'
+    }
+    resolve.status(statusCode).render('ErrorLayout', {error})
+    //resolve.status(statusCode).send(message);
+    //resolve.send('Something went wrong!')
 })
 
 app.listen(3000, () => {
