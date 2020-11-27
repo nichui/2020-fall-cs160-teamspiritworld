@@ -46,10 +46,10 @@ class App extends Component {
             <Provider store={store}>
   			<Router>
     			<div className="App">
-    				<Route path="/" exact component={Landingpage} />            		
+    				<Route path="/" exact component={Landingpage} />
 					<Route path="/register" component={Registerpage} />
     				<Route path="/signin" component={Login} />
-					
+
 					<Switch>
               			<PrivateRoute exact path="/home/resources" component={Home} />
 						<PrivateRoute path="/profile" component={Profilepage} />
@@ -58,12 +58,12 @@ class App extends Component {
 						<PrivateRoute path="/resource/:id" component={Resource} />
 
             		</Switch>
-    				
-    				
+
+
     			</div>
     		</Router>
             </Provider>
-    
+
   		);
 	}
 }

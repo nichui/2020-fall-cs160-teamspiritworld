@@ -24,7 +24,7 @@ export function getPopularResources(
                     .then (response =>{
                         return list ? [...list,...response.data] : response.data;
                     });
-                   
+
                     return {
 
                         type: GET_RESOURCES,
@@ -35,21 +35,21 @@ export function getPopularResources(
 
 export function getResource(resourceId){
     //  /api/resources/resource?id=5e13765a4084511885f252f1
-    
+
     const request = axios.get(`/api/resources/resource?id=${resourceId}`)
                  .then( response => {
                      return response.data
                  }).catch((err)=>{
                      return false
                  })
- 
+
      return {
          type: GET_RESOURCE,
          payload: request
      }
- 
+
  }
- 
+
 
  export const setResourcesLoading = () => {
     return {
@@ -58,72 +58,72 @@ export function getResource(resourceId){
   };
   */
  export const getCategories = async ()=>
-    
-   
+
+
   //dispatch(setItemsLoading());
   await axios
     .get('/api/categories')
-    
-   
-   
+
+
+
 
 export const getCategory = (slug) =>(dispatch) => {
-   
+
   dispatch(setItemsLoading());
   axios
     .get(`/api/resources/category/${slug}`)
-    .then(response => 
+    .then(response =>
       //const resources = response.data;
       dispatch({ type: GET_RESOURCES, payload: response.data })
     )
-    .catch((err) => 
+    .catch((err) =>
       dispatch(returnErrors(
        err.response.data,
       ))
       );
-    
+
 };
- export const getResourcesByCount = async (count) => 
-   
+ export const getResourcesByCount = async (count) =>
+
    // dispatch(setItemsLoading());
      axios
-      .get(`/api/resources/${count}`);
-     
-      
-  
+      .get(`/api/resources/resource${count}`);
+
+
+
   export const getResource = (resourceId) => (dispatch) => {
-   
+
     dispatch(setItemsLoading());
     axios
       .get(`/api/resources/resource?id=${resourceId}`)
-      .then(response => 
+      .then(response =>
         //const resources = response.data;
         dispatch({ type: GET_RESOURCE, payload: response.data })
       )
-      .catch((err) => 
+      .catch((err) =>
         dispatch(returnErrors(
          err.response.data,
         ))
         );
   }
-  export const fetchResourcesByFilter = async (arg)  => 
-   
-    
+  export const fetchResourcesByFilter = async (arg)  =>
+
+
    axios
       .post('/api/resources/search/filters',arg)
-      
-      
-  
+
+
+
   /*
   export const getResources = (sort,order, page) => (dispatch) => {
     dispatch(setItemsLoading());
     axios
       .get(`/api/resources/`,sort,order,page)
-      .then(response => 
+      .then(response =>
         //const resources = response.data;
         dispatch({ type: GET_RESOURCES, payload: response.data })
       )
-      .catch((err) => 
+      .catch((err) =>
         dispatch(returnErrors(
          err.response.data,
         ))
@@ -136,5 +136,3 @@ export const getCategory = (slug) =>(dispatch) => {
       type: RESOURCES_LOADING
     };
   };
-  
-  

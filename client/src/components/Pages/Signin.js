@@ -38,7 +38,7 @@ class Login extends Component {
 				this.setState({msg: null});
 			}
 		}
-		
+
 	}
 */
 
@@ -48,7 +48,7 @@ class Login extends Component {
 		  this.props.history.push("/home/resources");
 		}
 	  }
-	
+
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.auth.isAuthenticated) {
 		  this.props.history.push("/home/resources"); // push user to dashboard when they login
@@ -59,19 +59,19 @@ class Login extends Component {
 			});
 		  }
 		}
-		
+
 		onChange = e => {
 			this.setState({ [e.target.id]: e.target.value });
 		  };
-		
+
 		  onSubmit = e => {
 			e.preventDefault();
-		
+
 			const userData = {
 			  email: this.state.email,
 			  password: this.state.password
 			};
-		
+
 			this.props.loginUser(userData);
 		  };
 	render(){
@@ -81,38 +81,38 @@ class Login extends Component {
 			<div className="log">
 
 
-			
-				
+
+
 				<form onSubmit={this.onSubmit} className="text-center border border-light p-5" action="#!">
 					{this.state.msg }
     			<p className="h4 mb-4 FormTitle">Sign in</p>
 
    		 	<input name="email" type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail"  onChange={this.onChange}  value={this.state.email} error={errors.email} id="email" required />
-			
- 
-    		<input type="password" name="password"  id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password"  onChange={this.onChange}  value={this.state.password} error={errors.password} id="password" required />
-			
-    
-       
-            <a href="">Forgot password?</a>
-        
 
-  
+
+    		<input type="password" name="password"  id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password"  onChange={this.onChange}  value={this.state.password} error={errors.password} id="password" required />
+
+
+
+            <a href="">Forgot password?</a>
+
+
+
     	<button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
 
-    
+
     	<p>Not a member? Please register below.
-       
+
     	</p>
 
     	<button class="btn btn-info btn-block my-4" type="submit">Register</button>
-   
+
 
 		</form>
 
-				
 
-			
+
+
 	<Link to={{
 				pathname: `${this.props.match.url}/Register`
 			}}></Link>
@@ -128,7 +128,7 @@ Login.propTypes = {
 	auth: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired
   };
-  
+
   const mapStateToProps = state => ({
 	auth: state.auth,
 	errors: state.errors
@@ -137,5 +137,3 @@ Login.propTypes = {
 	mapStateToProps,
 	{ loginUser }
   )(withRouter(Login));
-
-  
