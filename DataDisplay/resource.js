@@ -7,6 +7,10 @@ const ResourceSchema = new Schema({
     content: String, //price
     category: String, // description
     location: String,
+    reviews:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Review'
+    }]
 });
 
 module.exports = mongoose.model('Resource', ResourceSchema);
