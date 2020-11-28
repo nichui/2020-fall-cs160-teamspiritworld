@@ -41,6 +41,13 @@ p {
   padding: 20px 30px;
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 /* Caption text */
 .text {
   color: #f2f2f2;
