@@ -1,3 +1,113 @@
+import React, {useState} from 'react'
+import {Menu} from 'antd'
+import Logo from './Logo.svg';
+import '../../css/styles.css';
+import firebase from 'firebase'
+import {useDispatch, useSelector} from 'react-redux'
+import {useHistory} from 'react-router-dom'
+
+
+import { SettingOutlined,LogoutOutlined, QuestionOutlined, UserOutlined, UserAddOutlined, PlusSquareOutlined} from '@ant-design/icons';
+import {Link} from 'react-router-dom'
+
+const { SubMenu, Item } = Menu;
+
+
+
+const NavbarLanding = () => {
+	const [current, setCurrent] = useState('Home')
+	let dispatch = useDispatch()
+	let {user} = useSelector((state) => ({...state}))
+  let history = useHistory()
+
+	const handleClick=(e) =>{
+		//console.log(e.key)
+
+		setCurrent(e.key)
+
+	
+	}
+	{/*
+		const logout=()=>{
+    firebase.auth().signOut()
+    dispatch({
+      type: 'LOGOUT',
+      payload: null,
+    })
+    history.push('/login')
+  }
+  
+	*/}
+
+	
+
+  const logout=()=>{
+    firebase.auth().signOut()
+    dispatch({
+      type: 'LOGOUT',
+      payload: null,
+    })
+    history.push('/login')
+  }
+  
+  
+    return (
+		
+      <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
+		  	<a className="navbar-brand " >
+				<img src={Logo} height="55" class="d-inline-block float-left"
+     			alt="spartan logo" /> <span className="Logo"><Link to="/" className="Logo">SpiritWorld </Link></span>			
+			</a>
+			
+		
+		{!user && (
+        <Item key="register" icon={<UserAddOutlined />} className='float-right'>
+         <Link to="/register">Register </Link>
+        </Item>)}
+		{!user && (
+		<Item key="login" icon={<UserOutlined />} className="float-right">
+         <Link to="/login">Login</Link>
+        </Item>
+		)}
+		
+
+		{!user && (
+        <Item key="faq" icon={<QuestionOutlined />} className="float-right" >
+         <Link to="/faq">FAQ </Link>
+        </Item>
+		)}
+		
+		
+		{user && (
+        <SubMenu icon={<SettingOutlined />} title={user.email && user.email.split('@')[0]} className="float-right">
+          {user && user.role === 'subscriber' &&  <Item><Link to="/user/history"/>Dashboard</Item>}
+		  {user && user.role === 'admin' &&  <Item><Link to="/admin/dashboard"/>Dashboard</Item>}
+
+		  <Item icon={<LogoutOutlined />} onClick={logout}>
+            Logout
+          </Item>
+
+		</SubMenu>
+		)}
+		{user && (
+		<Item key="register" icon={<PlusSquareOutlined />} className='float-right'>
+         <Link to="/favlist">Favorite List </Link>
+        </Item>
+		)}
+		
+
+		
+       
+      </Menu>
+	  
+    );
+  }
+
+
+export default NavbarLanding;
+
+
+/*need
 import React from 'react';
 import {Link} from 'react-router-dom';
 import '../../css/styles.css';
@@ -57,3 +167,5 @@ const Navbar = () => {
 }
 
 export default Navbar
+need*/
+
