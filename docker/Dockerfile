@@ -1,0 +1,1 @@
+CMD [ "npm", "run", "dev"]
