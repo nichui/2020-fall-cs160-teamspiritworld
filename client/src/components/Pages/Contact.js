@@ -26,7 +26,6 @@ class FavListpage extends Component {
     type: Date,
     default: new Date()
   }
-});
 
 var Message = mongoose.model("Message", MessageSchema);
 
