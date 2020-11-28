@@ -7,10 +7,17 @@ const Review = require('../DataDisplay/reviewResource');
 const {resourceSchema, reviewSchema} = require('../ValidateSchemas.js');
 const {isLoggedIn, isAdmin, validateResource} = require('../generic');
 const resources = require('../controllers/resources')
+const multer = require('multer')
+const {storage} = require('../cloudinary');
+const upload = multer({ storage});
 
 router.route('/')
     .get(catchAsync(resources.index))
-    .post(isLoggedIn ,validateResource, catchAsync(resources.createResource));
+    /*.post(isLoggedIn ,validateResource, catchAsync(resources.createResource));*/
+    .post(upload.array('image'),(request, response) =>{
+        console.log(request.body, request.file);
+        response.send("IT WORKED")
+    })
 
 //new Resources
 router.get('/AddResource', isLoggedIn, resources.renderAddForm);
