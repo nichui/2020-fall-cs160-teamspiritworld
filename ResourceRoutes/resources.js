@@ -8,7 +8,45 @@ const {resourceSchema, reviewSchema} = require('../ValidateSchemas.js');
 const {isLoggedIn, isAdmin, validateResource} = require('../generic');
 const resources = require('../controllers/resources')
 
-router.route('/')
+
+const escapeRegex = text => text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+router.route('/' , (req, res)  =>{
+    
+    //get all resources
+    let noMatch = null
+if(req.query.search){
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+         // Get all campgrounds from DB
+         Resource.find({title: regex}, function(err, allResources){
+            if(err){
+                console.log(err);
+            } else {
+               if(allResources.length < 1) {
+                   noMatch = "No resources match that query, please try again.";
+               }
+               //get(catchAsync(resources.index))
+               res.render("WebpageDisplay/resources/index", { resources: allResources, page: "resources", noMatch: noMatch });
+
+            }
+         });
+    }else {
+       
+    Resource.find({}, function(err, allResouces){
+        if(err){
+            console.log(err);
+        } else {
+
+            res.render("WebpageDisplay/resources/index", { resources: allResources, page: "resources", noMatch: noMatch});
+
+
+        }
+     });
+ 
+    }
+})
+
+
+    
     .get(catchAsync(resources.index))
     .post(isLoggedIn ,validateResource, catchAsync(resources.createResource));
 

@@ -1,9 +1,25 @@
 <% layout('/WebpageLayouts/Decoration') %>
+
+<p>
+    <form action='/resources' method="GET" class="form-inline"> 
+        <div class="form-group">
+            <input type='text' name='search' placeholder="SJSU Resources search ..." class="form-control">
+            <input type='submit' value="Search" class='btn btn-primary'></button>
+        </div>
+    </form>
+</p>
 <h1>All Resources</h1>
 <div>
     <a href="/resources/AddResource">Add Resource</a>
 </div>
 
+
+  <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+    <% if(noMatch !== null) {%>
+      <div class="col-md-12">
+        <h4><%= noMatch %></h4>
+      </div>
+    <% } %>
 <% for (let resource of resources) {%>
     <div class="card"mb-3>
         <div class="col-md-4">
@@ -21,4 +37,5 @@
         </div>
     </div>
 <% }%>
+  </div>
 
