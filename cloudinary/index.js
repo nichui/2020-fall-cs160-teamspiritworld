@@ -9,8 +9,10 @@ cloudinary.config({
 
 const storage = new CloudinaryStorage({
     cloudinary,
-    folder: 'SpiritWorld',
-    allowedFormat: ['jpeg', 'png', 'jpg']
+    params:{
+        folder: 'SpiritWorld',
+        allowedFormat: ['jpeg', 'png', 'jpg']
+    }
 });
 
 module.exports ={
