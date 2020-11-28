@@ -20,7 +20,8 @@
 
     <div class="col-6 offset-3">
         <h1 class="text-center">Edit Resource</h1>
-        <form action="/resources/<%= resource._id%>?_method=PUT" method="POST" novalidate class="validated-form">
+        <form action="/resources/<%= resource._id%>?_method=PUT" method="POST" novalidate class="validated-form"
+              enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label" for="title">Title</label>
                 <input class="form-control" type="text" id="title" name="resource[title]" value="<%= resource.title%>" required>
@@ -38,11 +39,12 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="image">Image Url</label>
-                <input class="form-control" type="text" id="location" name="resource[image]" value="<%= resource.image%>" required>
+                <label class="form-label" for="image">Add Images</label>
+                <input type="file" name="image" id="image" multiple>
+                <!--<input class="form-control" type="text" id="location" name="resource[image]" value="<%= resource.image%>" required>
                 <div class="valid-feedback">
                     Image Link is good
-                </div>
+                </div>-->
             </div>
 
             <div class="mb-3">

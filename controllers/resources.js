@@ -40,8 +40,12 @@ module.exports.createResource = async(req, res, next) =>{
     }*/
     //console.log(result);
     const resource = new Resource(req.body.resource);
+    resource.images = req.files.map(f =>({
+        url: f.path, filename: f.filename
+    }));
     resource.author = req.user._id; // match author's name with corresponding resource
     await resource.save();
+    console.log(resource);
     req.flash('success', 'Successfully made a new Resource!');
     res.redirect(`/resources/${resource._id}`)
 }
@@ -78,8 +82,12 @@ module.exports.renderEditForm = async(req,res) =>{
 
 module.exports.updateResource = async(req, res) =>{
     const {id} = req.params;
-
     const resource = await Resource.findByIdAndUpdate(id, {...req.body.resource});
+    const imgs = req.files.map(f =>({
+        url: f.path, filename: f.filename
+    }));
+    resource.images.push(...imgs);
+    await resource.save()
     req.flash('success', 'Resource is successfully updated!!!');
     res.redirect(`/resources/${resource._id}`)
 }
