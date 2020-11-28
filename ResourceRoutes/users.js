@@ -3,54 +3,31 @@ const router = express.Router();
 const catchAsync = require('../WebpageDisplay/Utility/CatchAsync');
 const User = require('../DataDisplay/user');
 const passport = require('passport');
+const users = require('../controllers/users');
 
-router.get('/register', (request, response)=>{
-    response.render('users/register');
-})
+router.route('/register')
+    .get(users.renderRegister)
+    .post(catchAsync(users.RegisterAction));
 
-router.post('/register', catchAsync(async(request, response)=>{
-    try{
-        const{email, username, password} = request.body;
-        const user = new User({email, username});
-        const registeredUser = await User.register(user, password);
-        request.login(registeredUser, error => {
-            if(error){
-                return next(error);
-            }
-            else{
-                request.flash('success','Welcome to Spirit World!');
-                response.redirect('/resources');
-            }
+router.route('/login')
+    .get(users.renderLogin)
+    .post(passport.authenticate('local', {failureFlash: true, failureRedirect: '/login'}),
+        users.LoginAction);
 
-        })
 
-    } catch(error){
-        request.flash('error', error.message);
-        response.redirect('register');
-    }
 
-    //console.log(registeredUser);
 
-}));
+/*router.get('/register', users.renderRegister);
 
-router.get('/login',(request, response)=>{
-    response.render('users/login');
-})
+router.post('/register', catchAsync(users.RegisterAction));*/
+
+/*router.get('/login',users.renderLogin);
 
 router.post('/login',
     passport.authenticate('local', {failureFlash: true, failureRedirect: '/login'}),
-    (request, response)=>{
-        request.flash('success', 'Welcome back to Spirit World');
-        const redirectUrl = request.session.returnTo || '/resources';
-        delete request.session.returnTo;
-        response.redirect(redirectUrl);
-})
+    users.LoginAction);*/
 
-router.get('/logout', (request, response) =>{
-    request.logout();
-    request.flash('success', "Thank you and See You Again")
-    response.redirect('/resources');
-})
+router.get('/logout', users.renderLogout);
 
 module.exports = router;
 
