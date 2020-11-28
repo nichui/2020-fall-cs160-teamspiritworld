@@ -1,3 +1,7 @@
+
+if(process.env.NODE_ENV !== 'production'){
+    require('dotenv').config()
+}
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -19,8 +23,9 @@ const userRoutes = require('./ResourceRoutes/users');
 const resourcesRoutes = require('./ResourceRoutes/resources');
 const reviewsRoutes = require('./ResourceRoutes/reviews');
 
+const dbUrl = process.env.DATABASE
 
-mongoose.connect('mongodb://localhost:27017/spirit-world',{
+mongoose.connect(dbUrl,{
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
