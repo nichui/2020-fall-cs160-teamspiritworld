@@ -22,6 +22,9 @@ const userRoutes = require('./ResourceRoutes/users');
 
 const resourcesRoutes = require('./ResourceRoutes/resources');
 const reviewsRoutes = require('./ResourceRoutes/reviews');
+const dotenv = require("dotenv");
+dotenv.config();
+
 
 const dbUrl = process.env.DATABASE
 
