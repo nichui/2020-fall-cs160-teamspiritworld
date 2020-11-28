@@ -7,9 +7,11 @@
 }
 
 body {
-  height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0,0,0,0.7)),
   url("https://www.sjsu.edu/communications/pics/ADJ_sjsu-gate-dschmitz-111417-3154_flat.jpg");
+  background-size:     cover;                      /* <------ */
+  background-repeat:   no-repeat;
+  background-position: center center;
 }
 
 * {box-sizing: border-box;}
