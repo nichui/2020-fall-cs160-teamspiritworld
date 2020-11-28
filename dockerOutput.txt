@@ -1,0 +1,7 @@
+sarah_chi@Sarahs-MacBook-Pro 2020-fall-cs160-teamspiritworld % docker build --tag spiritworld:1.0 .
+[+] Building 0.0s (2/2) FINISHED                                                                                                                         
+ => [internal] load .dockerignore                                                                                                                   0.0s
+ => => transferring context: 2B                                                                                                                     0.0s
+ => [internal] load build definition from Dockerfile                                                                                                0.0s
+ => => transferring dockerfile: 69B                                                                                                                 0.0s
+
