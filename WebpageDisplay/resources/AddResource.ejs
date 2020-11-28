@@ -1,0 +1,65 @@
+<% layout('/WebpageLayouts/Decoration') %>
+<div class="row">
+
+    <div class="col-6 offset-3">
+        <h1 class="text-center">Add Resource</h1>
+        <form action="/resources" method="POST" novalidate class="validated-form">
+            <div class="mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="resource[title]" required>
+                <div class="valid-feedback">
+                    Title is good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" type="text" id="location" name="resource[location]" required>
+                <div class="valid-feedback">
+                    Location is good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="image">Image Url</label>
+                <input class="form-control" type="text" id="location" name="resource[image]" required>
+                <div class="valid-feedback">
+                    Image Link is good
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="Category">Resource Category</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="category-label">Category</span>
+                    </div>
+                    <input type="text" class="form-control" id="Category" aria-label="Category"
+                           aria-describedby="category-label" name="resource[category]" required>
+                    <div class="valid-feedback">
+                        Category is good
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label" for="location">Content</label>
+                <textarea class="form-control" type="text" id="location" name="resource[content]" required></textarea>
+                <div class="valid-feedback">
+                    Content is good
+                </div>
+            </div>
+
+
+
+            <div class="mb-3">
+                <button class="btn btn-success">Add Resource</button>
+            </div>
+
+        </form>
+        <a href="/resources">All Resources</a>
+    </div>
+</div>
+
+

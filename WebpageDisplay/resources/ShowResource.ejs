@@ -1,0 +1,87 @@
+<% layout('/WebpageLayouts/Decoration') %>
+<link rel="stylesheet" href="/Styles/RatingStars.css">
+
+<div class="row">
+    <div class="col-6">
+        <div class="card mb-3">
+            <img src="<%= resource.image%>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><%= resource.title%></h5>
+                <p class="card-text"><%= resource.content%></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item text-muted"><%= resource.location%></li>
+                <li class="list-group-item">Uploaded by <%= resource.author.username%></li>
+                <li class="list-group-item"><%= resource.category%></li>
+            </ul>
+            <!--Replace live below with if(currentUser._id.equals('5fc0bfa1b5254a2488b31aa8')) {
+            will make Teo1 username as admin. Edit and Delete button only appears for admin -->
+            <!-- if currentUser exists and id is matched then current user is author and can have accesses -->
+            <!--if(currentUser && resource.author.equals(currentUser._id))-->
+            <% if(currentUser && resource.author.equals(currentUser._id)) {%>
+            <div class="card-body">
+                <a class="card-link btn btn-info" href="/resources/<%= resource._id%>/EditResource">Edit Resource</a>
+                <form class="d-inline" action="/resources/<%=resource._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete Resource</button>
+                </form>
+            </div>
+            <% } %>
+            <div class ="card-footer text-muted">
+                <a href="/resources">All Resources</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <% if(currentUser) {%>
+        <h2>Review for this resource: </h2>
+        <form action="/resources/<%= resource._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
+            <!--<div class="mb-3">
+                <label class="form-label" for="rating">Rating</label>
+                <input class="custom-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+            </div>-->
+            <div class="mb-3">
+            <fieldset class="starability-heart">
+                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="body">Please leave feedback here: </label>
+                <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+                <div class="valid-feedback">
+                    Feedback is good
+                </div>
+            </div>
+            <button class="btn btn-success"> Submit </button>
+        </form>
+            <% } %>
+        <% for(let review of resource.reviews) { %>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title"> <%= review.author.username%> </h5>
+                    <p class="starability-result" data-rating="<%= review.rating%>">
+                        Rated: <%= review.rating%> stars
+                    </p>
+                    <!--<h6 class="card-subtitle mb-2 text-muted">By review.author.username</h6>-->
+                    <p class="card-text">Review: <%= review.body %></p>
+                    <% if(currentUser && review.author.equals(currentUser._id)) { %>
+                    <form action="/resources/<%=resource._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                    <% } %>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+
