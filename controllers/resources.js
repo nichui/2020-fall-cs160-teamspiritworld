@@ -82,8 +82,12 @@ module.exports.renderEditForm = async(req,res) =>{
 
 module.exports.updateResource = async(req, res) =>{
     const {id} = req.params;
-
     const resource = await Resource.findByIdAndUpdate(id, {...req.body.resource});
+    const imgs = req.files.map(f =>({
+        url: f.path, filename: f.filename
+    }));
+    resource.images.push(...imgs);
+    await resource.save()
     req.flash('success', 'Resource is successfully updated!!!');
     res.redirect(`/resources/${resource._id}`)
 }
