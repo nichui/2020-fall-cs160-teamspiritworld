@@ -7,6 +7,9 @@ const Review = require('../DataDisplay/reviewResource');
 const {resourceSchema, reviewSchema} = require('../ValidateSchemas.js');
 const {isLoggedIn, isAdmin, validateResource} = require('../generic');
 const resources = require('../controllers/resources')
+const multer = require('multer')
+const {storage} = require('../cloudinary');
+const upload = multer({ storage});
 
 
 const escapeRegex = text => text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
@@ -48,7 +51,11 @@ if(req.query.search){
 
     
     .get(catchAsync(resources.index))
-    .post(isLoggedIn ,validateResource, catchAsync(resources.createResource));
+    .post(isLoggedIn,upload.array('image'),validateResource, catchAsync(resources.createResource));
+    /*.post(upload.array('image'),(request, response) =>{
+        console.log(request.body, request.file);
+        response.send("IT WORKED")
+    })*/
 
 //new Resources
 router.get('/AddResource', isLoggedIn, resources.renderAddForm);

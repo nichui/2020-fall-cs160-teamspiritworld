@@ -40,8 +40,12 @@ module.exports.createResource = async(req, res, next) =>{
     }*/
     //console.log(result);
     const resource = new Resource(req.body.resource);
+    resource.images = req.files.map(f =>({
+        url: f.path, filename: f.filename
+    }));
     resource.author = req.user._id; // match author's name with corresponding resource
     await resource.save();
+    console.log(resource);
     req.flash('success', 'Successfully made a new Resource!');
     res.redirect(`/resources/${resource._id}`)
 }
