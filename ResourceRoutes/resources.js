@@ -11,94 +11,46 @@ const multer = require('multer')
 const {storage} = require('../cloudinary');
 const upload = multer({ storage});
 
-//var Fuse = require('fuse.js');
-const { all } = require('./reviews');
-
 
 const escapeRegex = text => text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-router.get('/' , (req, res)  =>{
+router.route('/' , (req, res)  =>{
     
     //get all resources
-    if(req.query && req.query.search && req.query.search.length>0){
+    let noMatch = null
+if(req.query.search){
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-        Resource.find({title: regex}, function(err, allResources){
-           if(err){
-              console.log(err);
-              return res.redirect("back");
-           } else {
-               /*
-            var options = {
-                shouldSort: true,
-                threshold: 0.5,
-                location: 0,
-                distance: 100,
-                maxPatternLength: 32,
-                minMatchCharLength: 2,
-                keys: ["title", "location"]
-              };
-              */
-              //var fuse = new Fuse(allResources, options);
-             // var result = fuse.search(req.query.search);
-               if(allResources.length>0){
-                   return res.render("resources/index",{resources:allResources, page: 'resources'});
-               } else{
-                   req.flash("info","No resources found");
-                   return res.redirect("/resources");
-               }
-               
-           }
-        });
-    }
-    else if (req.query.sortby) {
-        if (req.query.sortby === "rateAvg") {
-          Resource.find({})
-            .sort({
-              rateCount: -1,
-              rateAvg: -1
-            })
-            .exec(function(err, allResources) {
-              if (err) {
+         // Get all campgrounds from DB
+         Resource.find({title: regex}, function(err, allResources){
+            if(err){
                 console.log(err);
-              } else {
-                res.render("resources/index", {
-                  resources: allResources,
-                  currentUser: req.user, "error": "Cannot be sorted by average rating"
-                });
-              }
-            });
+            } else {
+               if(allResources.length < 1) {
+                   noMatch = "No resources match that query, please try again.";
+               }
+               //get(catchAsync(resources.index))
+               res.render("WebpageDisplay/resources/index", { resources: allResources, page: "resources", noMatch: noMatch });
+
+            }
+         });
+    }else {
+       
+    Resource.find({}, function(err, allResouces){
+        if(err){
+            console.log(err);
+        } else {
+
+            res.render("WebpageDisplay/resources/index", { resources: allResources, page: "resources", noMatch: noMatch});
+
+
         }
-    }
-        else if (req.query.sortby === "rateCount") {
-            Resource.find({})
-              .sort({
-                rateCount: -1
-              })
-              .exec(function(err, allResources) {
-                if (err) {
-                  console.log(err);
-                } else {
-                  res.render("resources/index", {
-                    resources: allResources,
-                    currentUser: req.user,
-                    "error": "Cannot be sorted by counting"
-                  });
-                }
-              });
-          } 
-          
-    else {
-        Resource.find({}, function(err, allResources){
-           if(err){
-              console.log(err);
-              return res.redirect("back");
-           } else {
-              res.render("resources/index",{resources:allResources, page: 'resources'});
-           }
-        });
+     });
+ 
     }
 })
-router.route('/')
-    //.get(catchAsync(resources.index))
+
+
+    
+    .get(catchAsync(resources.index))
     .post(isLoggedIn,upload.array('image'),validateResource, catchAsync(resources.createResource));
     /*.post(upload.array('image'),(request, response) =>{
         console.log(request.body, request.file);

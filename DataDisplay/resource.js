@@ -17,8 +17,6 @@ const ResourceSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Review'
     }],
-  rateAvg: Number,
-  rateCount: Number,
     author:{
         type: Schema.Types.ObjectId,
         ref: 'User'
