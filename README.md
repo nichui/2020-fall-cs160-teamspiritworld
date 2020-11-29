@@ -81,6 +81,33 @@ External links that may be helpful:
 https://git-scm.com/docs
 https://git-scm.com/docs/git-cherry-pick
 
+### Backend REST APIs - Routes for Resources
+
+| Resource Operation | URI (HTTP) | Method HTTP | Description |
+| -------- | ---------| --------| -------------|
+|  Retrieve all resources  | /resources    | GET   | Display the list of all resources |
+|  Add new resource	   | /resources/AddResource | POST | Create a new resource into the database |
+|  Retrieve/access to a resource | /resources/:id   | GET  | Display a resource from the database |
+|  Update a resource | /resources/:id | PUT | Modify/update an existing resource (Admin access only) |
+|  Delete a resource | /resources/:id | DELETE | Remove an existing resource from the list (Admin access only) |
+|  Retrieve an editing form of a resource | /resouces/:id/EditResource | GET | Display the edit page of a resource (Admin access only) |
+
+### Backend REST APIs - Routes for authentication
+| Resource Operation | URI (HTTP) | Method HTTP | Description |
+| -------- | ---------| --------| -------------|
+|  Retrieve form for registration | /register | GET | Display the signup form for users |
+|  Create new user | /register | POST | Add new user into the database |
+|  Retrieve form for signin | /login | GET | Display a signin form for user |
+|  User Login | /login | POST | Authenticate user for access to the web app | 
+
+### Backend REST APIs - Routes for reviews
+
+| Resource Operation | URI (HTTP) | Method HTTP | Description |
+| -------- | ---------| --------| -------------|
+| Create a review | /resources/:id/reviews | POST | Post a review/comment(s) for individual resource |
+| Delete a review | /resources/:id/reviews/:reviewId | DELETE | Remove a review/comment(s) from specific resource |
+
+
 
 ### Backend API testing
 
@@ -105,7 +132,7 @@ Go to the body tab, type in some data: Example below
 }
 ```
 
-and select the “raw” and “JSON” options.
+and select the “raw” and “JSON” option
 
 Make sure the request is POST. You should be able to see the response at the bottom, and the status on the top right of the bottom field. For failed API calls, you will get a `Status: 404 Not Found`.
 
