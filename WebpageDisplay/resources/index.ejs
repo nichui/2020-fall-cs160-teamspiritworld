@@ -18,7 +18,11 @@
 <% for (let resource of resources) {%>
     <div class="card" mb-3>
         <div class="col-md-4">
+            <% if(resource.images.length) {%>
             <img class="img-fluid" alt="" src="<%=resource.images[0].url%>">
+            <% } else {%>
+            <img class="img-fluid" alt="" src="https://res.cloudinary.com/drfqvbb8y/image/upload/v1606634581/SpiritWorld/p5erc5ocofq6bwflgqi3.png">
+            <% } %>
         </div>
         <div class="col-md-8">
             <div class="card-body">
