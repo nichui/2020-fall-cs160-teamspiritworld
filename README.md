@@ -42,11 +42,12 @@ The extension can be downloaded at https://chrome.google.com/webstore/detail/red
 To start on launching the application, users must first clone the repository. 
 
 To clone the git repo (using terminal), go to the green “code” button and copy the HTTPS URL link to the clipboard. Then open up the terminal (Mac/Linux) or command prompt (Windows), and enter the following command in any directory of your choosing:
-git clone https://github.com/nichui/2020-fall-cs160-teamspiritworld.git
+`git clone https://github.com/nichui/2020-fall-cs160-teamspiritworld.git`
 
 Note: Windows users must have `git` installed in their system. 
 
-Navigate to the `2020-fall-cs160-teamspiritworld` folder in the directory and launch the application by running “nodemon App.js".
+Navigate to the `2020-fall-cs160-teamspiritworld` folder in the directory and launch the application by running “nodemon App.js". 
+There may be node module dependency errors where some modules have to be installed independently (due to compatibility issues across different machines). In this case, the user must `npm install <missing_module>`.
 
 ### Pushing code and creating pull requests
 
@@ -144,7 +145,7 @@ https://docs.cypress.io/guides/getting-started/writing-your-first-test.html
 
 ### Database MongoDB Cluster setup
 
-We use MongoDB for our database. We store the data in a cloud database using MongoDB Atlas. 
+We use MongoDB for our database. We store the data in a cloud database using MongoDB Atlas so that the resources data can be linked for all team members. 
 You can link MongoDB Compass (the GUI) to the cluster. 
 You can log in through this link: https://account.mongodb.com/account/login to view the cluster and data. 
 

@@ -115,7 +115,7 @@ router.get('/AddResource', isLoggedIn, resources.renderAddForm);
 
 router.route('/:id')
     .get(catchAsync(resources.showResource))
-    .put(isLoggedIn, isAdmin, validateResource,catchAsync(resources.updateResource))
+    .put(isLoggedIn, isAdmin, upload.array('image'), validateResource,catchAsync(resources.updateResource))
     .delete(isLoggedIn, isAdmin, catchAsync(resources.deleteResource));
 //Resources index
 /*router.get('/', catchAsync(resources.index));*/
