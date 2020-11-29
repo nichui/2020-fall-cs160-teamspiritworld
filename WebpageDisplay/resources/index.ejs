@@ -3,7 +3,18 @@
 <div>
     <a href="/resources/AddResource">Add Resource</a>
 </div>
-
+<p>
+    <form action='/resources' method="GET" class="form-inline"> 
+        <div class="form-group">
+            <input type='text' name='search' placeholder="SJSU Resources search ..." class="form-control">
+            <input type='submit' value="Search" class='btn btn-primary'>
+        </div>
+    </form>
+</p>
+<h1>All Resources</h1>
+<div>
+    <a href="/resources/AddResource">Add Resource</a>
+</div>
 <% for (let resource of resources) {%>
     <div class="card" mb-3>
         <div class="col-md-4">
@@ -19,4 +30,3 @@
         </div>
     </div>
 <% }%>
-
