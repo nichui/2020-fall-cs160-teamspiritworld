@@ -1,10 +1,13 @@
 <% layout('/WebpageLayouts/Decoration') %>
-
+<h1>All Resources</h1>
+<div>
+    <a href="/resources/AddResource">Add Resource</a>
+</div>
 <p>
     <form action='/resources' method="GET" class="form-inline"> 
         <div class="form-group">
             <input type='text' name='search' placeholder="SJSU Resources search ..." class="form-control">
-            <input type='submit' value="Search" class='btn btn-primary'></button>
+            <input type='submit' value="Search" class='btn btn-primary'>
         </div>
     </form>
 </p>
@@ -12,24 +15,14 @@
 <div>
     <a href="/resources/AddResource">Add Resource</a>
 </div>
-
-
-  <div class="row text-center" style="display: flex; flex-wrap: wrap;">
-    <% if(noMatch !== null) {%>
-      <div class="col-md-12">
-        <h4><%= noMatch %></h4>
-      </div>
-    <% } %>
 <% for (let resource of resources) {%>
-    <div class="card mb-3">
+    <div class="card" mb-3>
         <div class="col-md-4">
-            <img class="img-fluid" alt="" src="<%=resource.image%>">
+            <img class="img-fluid" alt="" src="<%=resource.images[0].url%>">
         </div>
         <div class="col-md-8">
             <div class="card-body">
-                <h5 class="card-title">
-                    <%= resource.title %>
-                </h5>
+                <h5 class="card-title"><%= resource.title %> </h5>
                 <p class="card-text"><%= resource.content%></p>
                 <p class="card-text"><small class="text-muted"><%= resource.location %></small></p>
                 <a class="btn btn-primary" href="/resources/<%=resource._id %>">View More about <%=resource.title%></a>
@@ -37,5 +30,3 @@
         </div>
     </div>
 <% }%>
-  </div>
-
