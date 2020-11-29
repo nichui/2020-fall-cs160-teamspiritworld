@@ -14,6 +14,18 @@ ImageSchema.virtual('thumbnail').get(function(){
 const ResourceSchema = new Schema({
     title: String,
     images: [ImageSchema],
+    geometry:{
+        type:{
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates:{
+            type: [Number],
+            required: true
+        }
+
+    },
     content: String, //price
     category: String, // description
     location: String,
