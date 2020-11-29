@@ -1,0 +1,56 @@
+sarah_chi@Sarahs-MacBook-Pro 2020-fall-cs160-teamspiritworld % docker build --tag spiritworld:1.0 .
+[+] Building 45.1s (11/11) FINISHED                                                                                      
+ => [internal] load build definition from Dockerfile                                                                0.0s
+ => => transferring dockerfile: 230B                                                                                0.0s
+ => [internal] load .dockerignore                                                                                   0.1s
+ => => transferring context: 2B                                                                                     0.0s
+ => [internal] load metadata for docker.io/library/node:current-slim                                                1.1s
+ => CACHED [stage-1 1/6] FROM docker.io/library/node:current-slim@sha256:10126fe2136f2489bf771fe4cb8c08aad38e47d9d  0.0s
+ => [internal] load build context                                                                                   0.9s
+ => => transferring context: 2.34MB                                                                                 0.9s
+ => [stage-1 2/6] RUN npm install nodemon --global --save                                                          18.3s
+ => [stage-1 3/6] WORKDIR /app                                                                                      0.0s
+ => [stage-1 4/6] COPY package.json /app                                                                            0.0s 
+ => [stage-1 5/6] RUN npm install                                                                                  21.0s 
+ => [stage-1 6/6] COPY . /app                                                                                       2.0s 
+ => exporting to image                                                                                              2.5s 
+ => => exporting layers                                                                                             2.4s 
+ => => writing image sha256:430faf4216c9713c01a8e81ae9c044d7067b2f7a9afa990e4174b161c2a2aec8                        0.0s 
+ => => naming to docker.io/library/spiritworld:1.0                                                                  0.0s
+sarah_chi@Sarahs-MacBook-Pro 2020-fall-cs160-teamspiritworld % docker image ls
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+spiritworld              1.0                 430faf4216c9        9 seconds ago       400MB
+ 
+sarah_chi@Sarahs-MacBook-Pro 2020-fall-cs160-teamspiritworld % docker run 430faf4216c9 
+[nodemon] 2.0.6
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `node app.js`
+Serving on port 3000
+Database connected
+
+
+% docker tag spiritworld:1.0 schi99/spiritworld
+
+% docker login
+Authenticating with existing credentials...
+Login Succeeded
+
+
+% docker push schi99/spiritworld
+sarah_chi@Sarahs-MacBook-Pro 2020-fall-cs160-teamspiritworld % docker push schi99/spiritworld
+The push refers to repository [docker.io/schi99/spiritworld]
+d1ddd4231b69: Pushed 
+998624981816: Pushed 
+525ef1bdea21: Pushed 
+e5fee308b67c: Pushed 
+c58557cc1ef2: Pushed 
+e41e234975c9: Pushed 
+d68967c78819: Pushed 
+7ef3fa57625c: Pushed 
+c447987a5233: Pushed 
+4d3dd4268d84: Pushed 
+latest: digest: sha256:86d42daf360eafff8193d6284be07a3a41c522b9e433efead38b583b7277827d size: 2417
+
+% docker save spiritworld > spiritworld.tar

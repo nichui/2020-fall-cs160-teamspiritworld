@@ -1,8 +1,11 @@
 <% layout('/WebpageLayouts/Decoration') %>
 <link rel="stylesheet" href="/Styles/RatingStars.css">
 
+
+
 <div class="row">
     <div class="col-6">
+        <div id='map' style='width: 400px; height: 300px;'></div>
         <div id="resourceCarousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <% resource.images.forEach((image,i) => { %>
@@ -104,5 +107,20 @@
         <% } %>
     </div>
 </div>
+
+<!--<script>
+    mapboxgl.accessToken = '<%-process.env.MAPBOX_TOKEN %>';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+        center: [-74.5, 40], // starting position [lng, lat]
+        zoom: 4 // starting zoom
+    });
+</script>-->
+<script>
+    const mapToken = '<%-process.env.MAPBOX_TOKEN %>';
+    const resource = <%- JSON.stringify(resource)%>
+</script>
+<script src="/Scripts/showPageMap.js"></script>
 
 

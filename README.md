@@ -46,7 +46,7 @@ To clone the git repo (using terminal), go to the green “code” button and co
 
 Note: Windows users must have `git` installed in their system. 
 
-Navigate to the `2020-fall-cs160-teamspiritworld` folder in the directory and launch the application by running “nodemon App.js". 
+Navigate to the `2020-fall-cs160-teamspiritworld` folder in the directory and launch the application by running `nodemon App.js`. 
 There may be node module dependency errors where some modules have to be installed independently (due to compatibility issues across different machines). In this case, the user must `npm install <missing_module>`.
 
 ### Pushing code and creating pull requests
@@ -55,7 +55,7 @@ To push new code into the “master” branch and create a pull request for the 
 
 **NOTE**: Always make sure to check your commits and changes and your branch with `git status` before committing/pushing files. 
 
-At least one member of the team must review the pull request and the member must notify the team of the new pull request before pushing to master. Then the team has to pull or fetch the new changes from master to reflect the new changes in the codebase. 
+At least one member of the team must review the pull request and the member must notify the team of the new pull request before pushing to master. Then the team has to pull or fetch the new changes from master to reflect the new changes in the codebase. If there are merge conflicts in the pull request, they must be resolved before pushing to master. Users must NEVER force push from a branch to master if there are merge conflicts. It is recommended to resolve any git issues before force pushing from your branch. 
 
 To clean up untracked files, users must do a `git add` of the specified file changes, and discard other file changes that are not to be committed. 
 Example output and clean up:
@@ -75,7 +75,7 @@ Untracked files:
 A quick way to get rid of unstaged changes is the command: `git stash save --keep-index --include-untracked`.
 Users can also use `git clean` to restore and remove changes not staged for commit. 
 
-For bug updates and fixes to the code, users can cherry-pick a commit, that is, pick a commit out of a branch to be pushed to master. This should ideally be used for small bux fixes of a feature. 
+For bug updates and fixes to the code, users can `git cherry-pick` a commit, that is, pick a commit out of a branch to be pushed to master. This should ideally be used for small bux fixes of a feature. 
 
 External links that may be helpful:
 https://git-scm.com/docs
