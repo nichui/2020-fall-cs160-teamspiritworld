@@ -36,7 +36,9 @@ const randomDataDB = async() =>{
             content: 'The Society of Asian Scientists & Engineers (SASE) at San Jose State University aims to fulfill the three pillar mission of SASE National',
             geometry:{
                 "type": "Point",
-                "corrdinates": [-113.1331, 47.0202]
+                "corrdinates": [buildings[ran].longitude,
+                buildings[ran].latitude
+                ]
             },
             images: [
                 {
