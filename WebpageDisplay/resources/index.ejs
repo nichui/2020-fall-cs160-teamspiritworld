@@ -38,7 +38,7 @@
 <% }%>
 <script>
     const mapToken = '<%-process.env.MAPBOX_TOKEN %>';
-
+    const resources = {features: <%- JSON.stringify(resources)%>}
 </script>
 
 <script src="/Scripts/resourceMap.js"></script>
