@@ -1,4 +1,5 @@
 const Resource = require('../DataDisplay/resource');
+const {cloudinary} = require("../cloudinary");
 
 module.exports.index = async(req,res) =>{
     const resources = await Resource.find({});
@@ -82,11 +83,20 @@ module.exports.renderEditForm = async(req,res) =>{
 
 module.exports.updateResource = async(req, res) =>{
     const {id} = req.params;
+    console.log(req.body);
     const resource = await Resource.findByIdAndUpdate(id, {...req.body.resource});
     const imgs = req.files.map(f =>({
         url: f.path, filename: f.filename
     }));
     resource.images.push(...imgs);
+    if(req.body.deleteImages)
+    {
+        for(let filename of req.body.deleteImages){
+            await cloudinary.uploader.destroy(filename);
+        }
+        await resource.updateOne({$pull:{images: {filename: {$in: req.body.deleteImages}}}})
+        //console.log(resource)
+    }
     await resource.save()
     req.flash('success', 'Resource is successfully updated!!!');
     res.redirect(`/resources/${resource._id}`)
