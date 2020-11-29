@@ -26,13 +26,15 @@ const ResourceSchema = new Schema({
         }
 
     },
-    content: String, //price
-    category: String, // description
+    content: String, 
+    category: String, 
     location: String,
     reviews:[{
         type: Schema.Types.ObjectId,
         ref: 'Review'
     }],
+    rateAvg: Number,
+    rateCount: Number,
     author:{
         type: Schema.Types.ObjectId,
         ref: 'User'

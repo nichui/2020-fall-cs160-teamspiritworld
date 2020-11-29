@@ -3,18 +3,39 @@
 <div>
     <a href="/resources/AddResource">Add Resource</a>
 </div>
-<p>
-    <form action='/resources' method="GET" class="form-inline"> 
-        <div class="form-group">
-            <input type='text' name='search' placeholder="SJSU Resources search ..." class="form-control">
-            <input type='submit' value="Search" class='btn btn-primary'>
+<nav id="searchNav" class="navbar navbar-expand navbar-light bg-white shadow-sm">
+    <div class="container">
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort By
+              </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <form class="sortForm" action="/resources" method="GET">
+                <input type="text" name="sortby" value="rateAvg" class="d-none">
+                <button type="submit" class="dropdown-item">Highest Rated & Most Reviewed</button>
+              </form>
+             
+              
+              <a href="/resources" href class="dropdown-item">Reset</a>
+            </div>
+          </li>
+        </ul>
+        <div class="d-none d-md-block">
+          <form action="/resources" method="GET" class="input-group">
+            <input type="text" class="form-control" type="text" name="search" placeholder="Search Resources..." aria-label="Search">
+            <div class="input-group-append">
+                <input type='submit' value="Search" class='btn btn-primary'>
+                    <i class="fa fa-search"></i>
+                  
+            </div>
+          </form>
         </div>
-    </form>
-</p>
-<h1>All Resources</h1>
-<div>
-    <a href="/resources/AddResource">Add Resource</a>
-</div>
+      </div>
+    </div>
+  </nav>
+
 <% for (let resource of resources) {%>
     <div class="card" mb-3>
         <div class="col-md-4">
@@ -27,8 +48,26 @@
         <div class="col-md-8">
             <div class="card-body">
                 <h5 class="card-title"><%= resource.title %> </h5>
-                <p class="card-text"><%= resource.content%></p>
+                <p class="card-text"><%= resource.category%></p>
                 <p class="card-text"><small class="text-muted"><%= resource.location %></small></p>
+                <div>
+                <% if(resource.reviews.length == 0) { %>
+                    <span class="text-muted">No Reviews</span>
+                  <% } else { %>
+                    <% var stars = ['<i class="far fa-star text-danger "></i>', '<i class="far fa-star text-danger "></i>', '<i class="far fa-star text-danger "></i>', '<i class="far fa-star text-danger "></i>', '<i class="far fa-star text-danger "></i>'] %>
+                    <% for(var i = 0; i < Math.round(resource.rateAvg); i++) { %>
+                        <% stars[i] = '<i class="fas fa-star text-danger "></i>' %>
+                    <% } %>
+                    <% for(var i = 0; i < stars.length; i++) { %>
+                      <%- stars[i] %>
+                    <% } %>
+                    <% if (resource.reviews.length === 1) { %>
+                      <span class="text-muted"><%= resource.reviews.length %> Review</span>
+                    <% } else { %>
+                      <span class="text-muted"><%= resource.reviews.length %> Reviews</span>
+                    <% } %>
+                  <% } %>
+                </div>
                 <a class="btn btn-primary" href="/resources/<%=resource._id %>">View More about <%=resource.title%></a>
             </div>
         </div>
