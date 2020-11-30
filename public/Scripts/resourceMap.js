@@ -2,28 +2,29 @@ mapboxgl.accessToken = mapToken;
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v10',
-    center: [-103.59179687498357, 40.66995747013945],
-    zoom: 3
+    /*center: [-103.59179687498357, 40.66995747013945],*/
+    center: [-121.8821639, 37.3357807],
+    zoom: 14
 });
 
 map.on('load', function () {
 // Add a new source from our GeoJSON data and
 // set the 'cluster' option to true. GL-JS will
 // add the point_count property to your source data.
-    map.addSource('earthquakes', {
+    map.addSource('resources', {
         type: 'geojson',
 // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
 // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
         data:resources,
         cluster: true,
-        clusterMaxZoom: 14, // Max zoom to cluster points on
-        clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+        clusterMaxZoom: 20, // Max zoom to cluster points on
+        clusterRadius: 30 // Radius of each cluster when clustering points (defaults to 50)
     });
 
     map.addLayer({
         id: 'clusters',
         type: 'circle',
-        source: 'earthquakes',
+        source: 'resources',
         filter: ['has', 'point_count'],
         paint: {
 // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
@@ -55,25 +56,25 @@ map.on('load', function () {
     map.addLayer({
         id: 'cluster-count',
         type: 'symbol',
-        source: 'earthquakes',
+        source: 'resources',
         filter: ['has', 'point_count'],
         layout: {
             'text-field': '{point_count_abbreviated}',
             'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-            'text-size': 12
+            'text-size': 15
         }
     });
 
     map.addLayer({
         id: 'unclustered-point',
         type: 'circle',
-        source: 'earthquakes',
+        source: 'resources',
         filter: ['!', ['has', 'point_count']],
         paint: {
             'circle-color': '#11b4da',
-            'circle-radius': 4,
-            'circle-stroke-width': 1,
-            'circle-stroke-color': '#fff'
+            'circle-radius': 5,
+            'circle-stroke-width': 2,
+            'circle-stroke-color': 'yellow'
         }
     });
 
@@ -83,7 +84,7 @@ map.on('load', function () {
             layers: ['clusters']
         });
         var clusterId = features[0].properties.cluster_id;
-        map.getSource('earthquakes').getClusterExpansionZoom(
+        map.getSource('resources').getClusterExpansionZoom(
             clusterId,
             function (err, zoom) {
                 if (err) return;
