@@ -38,11 +38,11 @@
                 <li class="list-group-item">Uploaded by <%= resource.author.username%></li>
                 <li class="list-group-item"><%= resource.category%></li>
             </ul>
-            <!--Replace live below with if(currentUser._id.equals('5fc0bfa1b5254a2488b31aa8')) {
+            <!--Replace live below with if(currentUser && currentUser._id.equals('5fc0bfa1b5254a2488b31aa8')) {
             will make Teo1 username as admin. Edit and Delete button only appears for admin -->
             <!-- if currentUser exists and id is matched then current user is author and can have accesses -->
             <!--if(currentUser && resource.author.equals(currentUser._id))-->
-            <% if(currentUser && resource.author.equals(currentUser._id)) {%>
+            <% if(currentUser && currentUser._id.equals('5fc4acacee35083248601578')) {%>
             <div class="card-body">
                 <a class="card-link btn btn-info" href="/resources/<%= resource._id%>/EditResource">Edit Resource</a>
                 <form class="d-inline" action="/resources/<%=resource._id%>?_method=DELETE" method="POST">
