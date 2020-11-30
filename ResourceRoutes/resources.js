@@ -18,12 +18,11 @@ const escapeRegex = text => text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 router.get('/' , (req, res)  =>{
     
     //get all resources
-    //let noMatch = null   
-    // Get all campgrounds from DB
+
         if(req.query && req.query.search && req.query.search.length>0){
            
             const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-            Resource.find({title: regex}, function(err, allResources){
+            Resource.find({$or: [{name: regex,}, {location: regex}, {category: regex}]}, function(err, allResources){
                 if(err){
                    console.log(err);
                    return res.redirect("back");
@@ -46,8 +45,8 @@ router.get('/' , (req, res)  =>{
                        if(allResources.length>0){
                         return res.render("resources/index",{resources:allResources, page: 'resources'});
                     } else{
-                        req.flash("info","No resources found");
-                        return res.redirect("/resources");
+                       // req.flash("err","No resources found");
+                        return res.render("resources/index",{resources:allResources, page: 'resources', "error": "No result found from the search"});
                     }
                 }
             });
@@ -65,7 +64,7 @@ router.get('/' , (req, res)  =>{
                   } else {
                     res.render("resources/index", {
                       resources: allResources,
-                      currentUser: req.user, "error": "Cannot be sorted by average rating"
+                      currentUser: req.user, page: 'resources'
                     });
                   }
                 });
@@ -83,7 +82,7 @@ router.get('/' , (req, res)  =>{
                       res.render("resources/index", {
                         resources: allResources,
                         currentUser: req.user,
-                        "error": "Cannot be sorted by counting"
+                       
                       });
                     }
                   });

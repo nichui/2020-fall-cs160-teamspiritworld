@@ -4,8 +4,10 @@ const Review = require('../DataDisplay/reviewResource');
 module.exports.createReview = async(request, response) =>{
     const resource = await Resource.findById(request.params.id);
     const review = new Review(request.body.review);
-    review.author = request.user._id;
-    resource.reviews.push(review);
+    review.author = request.user._id; 
+    resource.rateCount = resource.reviews.length
+    resource.reviews.push(review);   
+
     await review.save();
     await resource.save();
     request.flash('success', 'New Review is successfully added!!!');
