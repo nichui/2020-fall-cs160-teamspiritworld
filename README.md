@@ -163,7 +163,9 @@ You may first try to compile in the Eclipse IDE, but this may result in errors b
     * The path MUST BE the path to the selenium unzipped contents, NOT the jar file itself 
 * Selenium archive link and version I used: http://selenium-release.storage.googleapis.com/index.html?path=3.9/ 
 After setting up the development environment, run the example Java program from https://github.com/SeleniumHQ/selenium/wiki/Getting-Started
-	
+
+**Manual Testing**
+In addition to automated testing, the team also did some manual testing by clicking the links on the navigation bar, registering, logging in, and adding new resources. Other manual testing included leaving a review on a resource, deleting a review on that resource, and adding new images. 
 
 External links that may be helpful: 
 https://www.selenium.dev/documentation/en/
