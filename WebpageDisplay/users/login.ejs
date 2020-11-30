@@ -1,22 +1,86 @@
 <% layout('/WebpageLayouts/Decoration') %>
-<h1>Login</h1>
-<form action="/login" method="POST"  class="validated-form" novalidate>
-    <div class="mb-3">
-        <label class="form-label" for="username">Username</label>
-        <input class="form-control" type="text" id="username" name="username" required>
-        <div class="valid-feedback">
-            Username is good
-        </div>
-    </div>
+<!--<h1>Login</h1>-->
+<!--
+-->
 
-    <div class="mb-3">
-        <label class="form-label" for="password">Password</label>
-        <input class="form-control" type="password" id="password" name="password" required>
-        <div class="valid-feedback">
-            Password is good
+
+
+<!--
+<div class="container d-flex justify-content-center align-items-center mt-2">
+    <div class="row">
+        <div class="col-md-10 offset-md col-xl-12 offset-xl">
+            <div class="card shadow">
+                <img src="https://media.glassdoor.com/l/8e/ec/a1/0c/sjsu-campus.jpg" alt="" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Login</h5>
+                    <form action="/login" method="POST"  class="validated-form" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="username">Username</label>
+                            <input class="form-control" type="text" id="username" name="username" autofocus required>
+                            <div class="valid-feedback">
+                                Username is good
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" id="password" name="password" required>
+                            <div class="valid-feedback">
+                                Password is good
+                            </div>
+                        </div>
+                        <button class="btn btn-success btn-block">
+                            Login
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-    <button class="btn btn-success">
-        Login
-    </button>
-</form>
+</div>-->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <link rel="stylesheet" type = "text/css" href="Styles/login.css">
+</head>
+<body>
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="row">
+        <div class="col-md-10 offset-md col-xl-10 offset-xl-1">
+            <div class="card shadow">
+                <img src="https://sfbay-media-library.s3.us-west-1.amazonaws.com/2019/08/08191813/1440px-Boccardo_Gate_San_Jos%C3%A9_State_University_-_DSC03952-800x400.jpg" alt="" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Login</h5>
+                    <form action="/login" method="POST"  class="validated-form" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="username">Username</label>
+                            <input class="form-control" type="text" id="username" name="username" autofocus required>
+                            <div class="valid-feedback">
+                                Username is good
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" id="password" name="password" required>
+                            <div class="valid-feedback">
+                                Password is good
+                            </div>
+                        </div>
+                        <button class="btn btn-success btn-block">
+                            Login
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,28 +1,59 @@
 <% layout('/WebpageLayouts/Decoration') %>
-<h1>Register</h1>
-<form action="/register" method="POST"  class="validated-form" novalidate>
-    <div class="mb-3">
-        <label class="form-label" for="username">Username</label>
-        <input class="form-control" type="text" id="username" name="username" required>
-        <div class="valid-feedback">
-            Location is good!
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+    <link rel="stylesheet" type = "text/css" href="Styles/register.css">
+</head>
+<body>
+<div class="container d-flex justify-content-center align-items-center mt-2 ">
+    <div class="row">
+        <div class="col-md-10 offset-md col-xl-12 offset-xl">
+            <div class="card shadow">
+                <img src="https://www.sjsu.edu/cies/pics/tower_hall_02.jpg" alt="" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Register</h5>
+                    <form action="/register" method="POST"  class="validated-form" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="username">Username</label>
+                            <input class="form-control" type="text" id="username" name="username" autofocus required>
+                            <div class="valid-feedback">
+                                Location is good!
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-control" type="email" id="email" name="email" required>
+                            <div class="valid-feedback">
+                                Location is good!
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" id="password" name="password" required>
+                            <div class="valid-feedback">
+                                Location is good!
+                            </div>
+                        </div>
+                        <button class="btn btn-success btn-block">
+                            Register
+                        </button>
+                    </form>
+
+                </div>
+            </div>
         </div>
     </div>
-    <div class="mb-3">
-        <label class="form-label" for="email">Email</label>
-        <input class="form-control" type="email" id="email" name="email" required>
-        <div class="valid-feedback">
-            Location is good!
-        </div>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" for="password">Password</label>
-        <input class="form-control" type="password" id="password" name="password" required>
-        <div class="valid-feedback">
-            Location is good!
-        </div>
-    </div>
-    <button class="btn btn-success">
-        Register
-    </button>
-</form>
+</div>
+</body>
+</html>
+
+
+
+
+
+
