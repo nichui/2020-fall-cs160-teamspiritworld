@@ -11,6 +11,8 @@ ImageSchema.virtual('thumbnail').get(function(){
     return this.url.replace('/upload', '/upload/w_300');
 });
 
+const opts= {toJSON: {virtuals:true}};
+
 const ResourceSchema = new Schema({
     title: String,
     images: [ImageSchema],
@@ -39,7 +41,11 @@ const ResourceSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }
+}, opts);
 
+ResourceSchema.virtual('properties.popUpMarkup').get(function(){
+    return `<strong><a href="/resources/${this._id}">${this.title}</a></strong>
+            <p>${this.content.substring(0,30)}...</p>`
 });
 
 ResourceSchema.post('findOneAndDelete', async function(document){
