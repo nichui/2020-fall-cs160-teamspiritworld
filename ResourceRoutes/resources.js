@@ -22,7 +22,7 @@ router.get('/' , (req, res)  =>{
         if(req.query && req.query.search && req.query.search.length>0){
            
             const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-            Resource.find({$or: [{name: regex,}, {location: regex}, {category: regex}]}, function(err, allResources){
+            Resource.find({$or: [{title: regex,}, {location: regex}, {category: regex}]}, function(err, allResources){
                 if(err){
                    console.log(err);
                    return res.redirect("back");
