@@ -18,7 +18,9 @@
 
 <div class="row">
 
-    <div class="col-6 offset-3">
+    <div class="col-xl-8 offset-xl-2 col-md-8 offset-md-2 mb-3 mt-0">
+        <div class="card shadow">
+            <div class="div card-body">
         <h1 class="text-center">Edit Resource</h1>
         <form action="/resources/<%= resource._id%>?_method=PUT" method="POST" novalidate class="validated-form"
               enctype="multipart/form-data">
@@ -100,5 +102,7 @@
 
         </form>
         <a href="/resources">All Resources</a>
+    </div>
+        </div>
     </div>
 </div>

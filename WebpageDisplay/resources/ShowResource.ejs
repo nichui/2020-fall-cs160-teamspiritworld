@@ -56,6 +56,7 @@
         </div>
     </div>
     <div class="col-6">
+        <div id="map"></div>
         <% if(currentUser) {%>
         <h2>Review for this resource: </h2>
         <form action="/resources/<%= resource._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
