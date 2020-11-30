@@ -3,9 +3,13 @@
 <div id="cluster-map" style="width: 100%; height: 500px "></div>
 <div class="container">
 <h1>All Resources</h1>
+
 <div>
-    <a href="/resources/AddResource">Add Resource</a>
+    <% if(currentUser && currentUser._id.equals('5fc4acacee35083248601578')) {%>
+        <a href="/resources/AddResource">Add Resource</a>
+    <%}%>
 </div>
+
 <nav id="searchNav" class="navbar navbar-expand navbar-light bg-white shadow-sm">
     <div class="container">
       <div class="collapse navbar-collapse">
@@ -72,7 +76,9 @@
                     <% } %>
                   <% } %>
                 </div>
+                <% if(currentUser) {%>
                 <a class="btn btn-primary" href="/resources/<%=resource._id %>">View More about <%=resource.title%></a>
+                <%}%>
             </div>
         </div>
     </div>
