@@ -8,7 +8,7 @@ VISION: For current SJSU students who are unaware of many different resources an
 Spirit World is a web application that provides students with easier access to more organized resources. 
 Unlike the SAMMY app, our product provides a personalized set of resources based on users’ needs.
 
-For the front end web server, we are using HTML, CSS, JS, and React.js, which will be connecting to the app server
+For the front end web server, we are using HTML, CSS, JS, and Bootstrap, which will be connecting to the app server
 with Node.js and Express.js. We are storing the user information into a mongoDB database. 
 
 To validate user login, we check the user input at the sign in and login page, where SJSU students have
@@ -39,12 +39,12 @@ Run the web application.
 You must also have the Chrome Redux extension installed to resolve "type error" compile issues.
 The extension can be downloaded at https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd.
 
-To start on launching the application, users must first clone the repository. 
+To start on launching the application, users must first clone the repository. Users can also download the zip file for the software package and run the app from that downloaded zip file after extracting the contents.
 
 To clone the git repo (using terminal), go to the green “code” button and copy the HTTPS URL link to the clipboard. Then open up the terminal (Mac/Linux) or command prompt (Windows), and enter the following command in any directory of your choosing:
 `git clone https://github.com/nichui/2020-fall-cs160-teamspiritworld.git`
 
-Note: Windows users must have `git` installed in their system. 
+Note: Windows users must have `git` installed in their system. Git should already be installed in Mac/Linux systems.
 
 Navigate to the `2020-fall-cs160-teamspiritworld` folder in the directory and launch the application by running `nodemon App.js`. 
 There may be node module dependency errors where some modules have to be installed independently (due to compatibility issues across different machines). In this case, the user must `npm install <missing_module>`.
