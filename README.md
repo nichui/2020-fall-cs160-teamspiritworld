@@ -46,7 +46,7 @@ To clone the git repo (using terminal), go to the green “code” button and co
 
 Note: Windows users must have `git` installed in their system. Git should already be installed in Mac/Linux systems.
 
-Navigate to the `2020-fall-cs160-teamspiritworld` folder in the directory and launch the application by running `nodemon App.js`. 
+Navigate to the `2020-fall-cs160-teamspiritworld` folder in the directory and launch the application by running `nodemon App.js`. If there is no `nodemon` present in the environment, users must install nodemon by `npm install nodemon --global --save`. Note: running `npm install nodemon --save` may still not install nodemon globally in the terminal command line.
 There may be node module dependency errors where some modules have to be installed independently (due to compatibility issues across different machines). In this case, the user must `npm install <missing_module>`.
 
 ### Pushing code and creating pull requests
