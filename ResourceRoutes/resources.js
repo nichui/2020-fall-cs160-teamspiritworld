@@ -82,7 +82,6 @@ router.get('/' , (req, res)  =>{
                       res.render("resources/index", {
                         resources: allResources,
                         currentUser: req.user,
-                       
                       });
                     }
                   });

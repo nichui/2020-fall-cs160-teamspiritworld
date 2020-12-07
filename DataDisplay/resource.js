@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Review = require('./reviewResource');
 const Schema = mongoose.Schema;
+const {isLoggedIn, isAdmin, validateResource} = require('../generic');
+const User = require('./user')
 
 const ImageSchema = new Schema({
     url: String,
@@ -14,6 +16,7 @@ ImageSchema.virtual('thumbnail').get(function(){
 const opts= {toJSON: {virtuals:true}};
 
 const ResourceSchema = new Schema({
+
     title: String,
     images: [ImageSchema],
     geometry:{
@@ -43,9 +46,11 @@ const ResourceSchema = new Schema({
     }
 }, opts);
 
+
+
 ResourceSchema.virtual('properties.popUpMarkup').get(function(){
     return `<strong><a href="/resources/${this._id}">${this.title}</a></strong>
-            <p>${this.content.substring(0,30)}...</p>`
+     <p>${this.content.substring(0,30)}...</p>`
 });
 
 ResourceSchema.post('findOneAndDelete', async function(document){
