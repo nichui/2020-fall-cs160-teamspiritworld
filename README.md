@@ -197,3 +197,15 @@ Serving on port 3000
 Database connected
 
 ```
+
+### Docker image run output
+```
+sarah_chi@Sarahs-MacBook-Pro 2020-fall-cs160-teamspiritworld % docker run <IMAGE ID hash> 
+[nodemon] 2.0.6
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `node app.js`
+Serving on port 3000
+Database connected
+```
