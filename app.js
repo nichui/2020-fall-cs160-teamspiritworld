@@ -26,7 +26,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 
-const dbUrl = process.env.DATABASE
+const dbUrl = process.env.DB_URL || process.env.DATABASE;
 
 mongoose.connect(dbUrl,{
     useNewUrlParser: true,
@@ -52,9 +52,11 @@ app.use(express.urlencoded({extended: true}))
 app.use(MethodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')));
 
+const secret = process.env.SECRET || 'This is a Secret';
+
 // cookies
 const sessionConfig={
-    secret: 'This is a Secret',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie:{
@@ -116,6 +118,7 @@ app.use((error, request, resolve, next) => {
     //resolve.send('Something went wrong!')
 })
 
-app.listen(3000, () => {
-    console.log('Serving on port 3000');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Serving on port ${port}`);
 })
