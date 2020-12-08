@@ -185,6 +185,11 @@
           <li>
             <a href="/resources">Resources</a>
           </li>
+          <li>
+            <% if(currentUser && currentUser._id.equals('5fc4acacee35083248601578')) {%>
+              <a href="/resources/AddResource">New Resource</a>
+            <%}%>
+          </li>
 
         </ul>
 
